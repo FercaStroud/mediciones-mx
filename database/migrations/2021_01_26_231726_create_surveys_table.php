@@ -17,13 +17,13 @@ class CreateSurveysTable extends Migration
             $table->bigIncrements('id');
             $table->string('title', 50);
             $table->string('slug', 50);
-            $table->text('description');
-            $table->text('welcome_text');
-            $table->text('end_text');
-            $table->boolean('anonymized');
-            $table->boolean('active');
-            $table->datetime('starts_at');
-            $table->datetime('ends_at');
+            $table->text('description')->nullable();
+            $table->text('welcome_text')->nullable();
+            $table->text('end_text')->nullable();
+            $table->boolean('anonymized')->default(0);
+            $table->boolean('active')->default(0);
+            $table->datetime('starts_at')->nullable();
+            $table->datetime('ends_at')->nullable();
             $table->timestamps();
         });
     }

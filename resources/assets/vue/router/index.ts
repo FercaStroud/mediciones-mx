@@ -8,9 +8,9 @@ const AuthResetForm = () => import('../views/AuthResetForm.vue');
 
 const Example = () => import('../views/Example.vue');
 const Home = () => import('../views/Home.vue');
-const Messages = () => import('../views/Messages.vue');
+//const Messages = () => import('../views/Messages.vue');
 const Users = () => import('../views/Users.vue');
-const UsersGraphQL = () => import('../views/UsersGraphQL.vue');
+const Dashboard = () => import('../views/Dashboard.vue');
 
 import userTypes from '@/utils/userTypes';
 
@@ -27,20 +27,20 @@ const router = new Router({
         title: Vue.i18n.translate('strings.home', null),
         auth: {
           roles: userTypes.ADMIN,
-          forbiddenRedirect: '/example',
+          forbiddenRedirect: '/dashboard',
         },
       },
     },
     {
-      path: '/example',
-      name: 'example',
-      component: Example,
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
       meta: {
-        title: Vue.i18n.translate('strings.example', null),
+        title: Vue.i18n.translate('strings.dashboard', null),
         auth: true,
       },
     },
-    {
+    /*{
       path: '/messages',
       name: 'messages',
       component: Messages,
@@ -48,7 +48,7 @@ const router = new Router({
         title: Vue.i18n.translate('strings.messages', null),
         auth: true,
       },
-    },
+    },*/
     {
       path: '/users',
       name: 'users',
@@ -57,19 +57,7 @@ const router = new Router({
         title: Vue.i18n.translate('strings.users', null),
         auth: {
           roles: userTypes.ADMIN,
-          forbiddenRedirect: '/example',
-        },
-      },
-    },
-    {
-      path: '/users/graphql',
-      name: 'users_graphql',
-      component: UsersGraphQL,
-      meta: {
-        title: Vue.i18n.translate('strings.users', null),
-        auth: {
-          roles: userTypes.ADMIN,
-          forbiddenRedirect: '/example',
+          forbiddenRedirect: '/dashboard',
         },
       },
     },

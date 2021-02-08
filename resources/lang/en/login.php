@@ -3,7 +3,7 @@
 return [
 
     'confirm_password' => 'Confirm password',
-    'description' => 'A Laravel 6 Single Page Application boilerplate using Vue.js 2.6, Bootstrap 4, TypeScript, Sass and Pug.',
+    'description' => 'Beard before they sold out neutra gluten-free. Godard wayfarers PBR&B literally. Blue bottle paleo lomo pickled deep v quinoa meh. Tousled master cleanse polaroid live-edge hell of.',
     'forgot_password' => 'Forgot Your Password?',
     'login' => 'Login',
     'keep_connected' => 'Keep me connected',

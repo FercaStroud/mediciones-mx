@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'name' => 'Admin',
-            'email' => 'admin@example.com',
+            'email' => 'info@appsgorilasonline.com',
             'password' => bcrypt('admin'),
             'type_id' => 1,
         ]);
@@ -26,24 +26,12 @@ class UsersTableSeeder extends Seeder
             'type_id' => 2,
         ]);
 
-        // Users pagination
-        // I know how to use factories, I just wanted to add it.
-        $people = [
-            'Alefe Souza',
-            'Ada Lovelace', 'Charles Babbage', 'George Boole', 'Alan Turing', 'Dennis Ritchie',
-            'Rasmus Lerdorf', 'Brendan Eich', 'James Gosling', 'Anders Hejlsberg', 'Rob Pike', 'Ken Thompson',
-            'Margareth Hamilton', 'Grace Hooper',
-            'Bill Gates', 'Steve Jobs', 'Linus Torvalds',
-            'Taylor Otwell', 'Evan You', 'Miguel de Icaza', 'James Montemagno',
-        ];
+        User::create([
+            'name' => 'Adolfo R. Silva',
+            'email' => 'adolfo@enmedioasociados.com',
+            'password' => bcrypt('adolfo'),
+            'type_id' => 2,
+        ]);
 
-        foreach ($people as $person) {
-            User::create([
-                'name' => $person,
-                'email' => strtolower(str_replace(' ', '.', $person)).'@example.com',
-                'password' => bcrypt('secret'),
-                'type_id' => 2,
-            ]);
-        }
     }
 }

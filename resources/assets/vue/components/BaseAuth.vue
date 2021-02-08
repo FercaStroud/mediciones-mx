@@ -13,11 +13,9 @@ export default class BaseAuth extends Vue {
       router-link(to='/login')
         .logo
           img.d-inline-block.align-top(
-            src='/images/logo.png',
+            src='/images/logo.svg',
             alt='Logo'
-            height=36,
           )
-
       router-view
 
     b-col.login-background(
@@ -25,18 +23,12 @@ export default class BaseAuth extends Vue {
       md=6,
       sm=12,
       lg=8,
-      :style="{ background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/background-login.jpg) no-repeat center / cover' }"
+      :style="{ background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/background-login-2.png) no-repeat center / cover' }"
     )
       .welcome
         h1 {{ $t('strings.welcome') }}!
         .sub-text {{ $t('login.description') }}
 
-  a(href='https://github.com/alefesouza/laravel-vue-boilerplate', target='_blank')
-    img(
-      src='https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png',
-      alt='Fork me on GitHub',
-      class='fork-me',
-    )
 </template>
 
 <style lang="scss" scoped>

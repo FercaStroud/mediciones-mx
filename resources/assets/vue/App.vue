@@ -24,9 +24,8 @@ export default class App extends Vue {
    * I recommend Noto Color Emoji font if you use Linux.
   */
   locales = [
+    { flag: '🇲🇽', name: 'es', title: 'Cambiar a Español', language: 'Español' },
     { flag: '🇺🇸', name: 'en', title: 'Switch to English', language: 'English' },
-    { flag: '🇧🇷', name: 'pt', title: 'Mudar para Português' , language: 'Português' },
-    { flag: '🇪🇸', name: 'es', title: 'Cambiar a Español', language: 'Español' },
   ];
 
   mounted() {

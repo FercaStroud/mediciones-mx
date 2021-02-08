@@ -15,7 +15,7 @@ export default {
         },
         "login": {
             "confirm_password": "Confirm password",
-            "description": "A Laravel 6 Single Page Application boilerplate using Vue.js 2.6, Bootstrap 4, TypeScript, Sass and Pug.",
+            "description": "Beard before they sold out neutra gluten-free. Godard wayfarers PBR&B literally. Blue bottle paleo lomo pickled deep v quinoa meh. Tousled master cleanse polaroid live-edge hell of.",
             "forgot_password": "Forgot Your Password?",
             "login": "Login",
             "keep_connected": "Keep me connected",
@@ -96,6 +96,9 @@ export default {
             "new_private_message": "New Private Message",
             "public_channel": "Public Channel",
             "new_public_message": "New Public Message"
+        },
+        "surveys": {
+            "title": "Surveys"
         },
         "validation": {
             "message": "The given data was invalid.",
@@ -208,7 +211,7 @@ export default {
         },
         "login": {
             "confirm_password": "Confirmar contraseña",
-            "description": "Una plantilla repetitiva de Laravel 6 Single Page Application utilizando Vue.js 2.6, Bootstrap 4, TypeScript, Sass y Pug.",
+            "description": "Blog echo park intelligentsia shaman flannel letterpress. Lumbersexual waistcoat pork belly four loko swag semiotics af disrupt squid. ",
             "forgot_password": "¿Olvidaste tu contraseña?",
             "login": "Iniciar sesión",
             "keep_connected": "Mantenme conectado",
@@ -295,6 +298,9 @@ export default {
             "new_private_message": "Nuevo mensaje privado",
             "public_channel": "Canal público",
             "new_public_message": "Nuevo mensaje público"
+        },
+        "surveys": {
+            "title": "Encuestas"
         },
         "validation": {
             "accepted": "El campo {attribute} debe ser aceptado.",
@@ -413,200 +419,6 @@ export default {
             "settings": "Configuraciones",
             "delete_user_confirmation": "¿Seguro que quieres eliminar a este usuario?",
             "language": "Español"
-        }
-    },
-    "pt": {
-        "errors": {
-            "fatal_error": "Ocorreu um erro fatal, por favor, entre em contato.",
-            "generic_error": "Houve um erro, tente novamente.",
-            "unauthorized": "Não autorizado.",
-            "forbidden": "Proibido."
-        },
-        "passwords": {
-            "password": "A senha precisa ter pelo menos seis caracteres e corresponder à confirmação.",
-            "reset": "Sua senha foi resetada!",
-            "sent": "Link de recuperação enviado!",
-            "token": "Esse token de recuperação de senha é inválido.",
-            "user": "Não encontramos um usuário com esse e-mail."
-        },
-        "login": {
-            "confirm_password": "Confirmar senha",
-            "description": "Um boilerplate de Single Page Application escrito em Laravel 6 usando Vue.js 2.6, Bootstrap 4, TypeScript, Sass e Pug.",
-            "forgot_password": "Esqueceu sua senha?",
-            "keep_connected": "Manter-me conectado",
-            "login": "Login",
-            "register": "Cadastrar",
-            "reset_password": "Redefinir senha",
-            "send_reset_link": "Enviar link de recuperação",
-            "account_created": "Sua conta foi criada com sucesso."
-        },
-        "auth": {
-            "failed": "Usuário não encontrado.",
-            "throttle": "Muitas tentativas de login. Por favor, tente novamente em {seconds} segundos."
-        },
-        "settings": {
-            "new_password": "Nova senha",
-            "password_confirmation": "Confirmar senha"
-        },
-        "pagination": {
-            "previous": "&laquo; Anterior",
-            "next": "Próxima &raquo;"
-        },
-        "home": {
-            "logout": "Sair",
-            "manage": "GERENCIAR",
-            "welcome": "Bem-vindo, {name}"
-        },
-        "buttons": {
-            "add": "Adicionar",
-            "approve": "Aprovar",
-            "cancel": "Cancelar",
-            "change_file": "Atualizar arquivo",
-            "choose_file": "Escolher arquivo",
-            "delete": "Apagar",
-            "edit": "Editar",
-            "ok": "OK",
-            "open": "Abrir",
-            "publish": "Publicar",
-            "reject": "Rejeitar",
-            "update": "Atualizar",
-            "save": "Salvar",
-            "sending": "Enviando"
-        },
-        "users": {
-            "add_user": "Adicionar usuário",
-            "edit_user": "Editar usuário",
-            "no_users": "Não há usuários cadastrados.",
-            "user_type": "Tipo de usuário",
-            "search": "Pesquisa de usuários"
-        },
-        "strings": {
-            "admin": "Administrador",
-            "email": "E-mail",
-            "image": "Imagem",
-            "loading": "Carregando",
-            "logo": "Logo",
-            "name": "Nome",
-            "normal": "Comum",
-            "optional": "Opcional",
-            "password": "Senha",
-            "required": "Obrigatório",
-            "text": "Texto",
-            "title": "Título",
-            "user": "Usuário",
-            "welcome": "Bem-vindo",
-            "example": "Exemplo",
-            "home": "Início",
-            "messages": "Mensagens",
-            "users": "Usuários",
-            "users_graphql": "Usuários (GraphQL)",
-            "settings": "Configurações",
-            "error_occurred": "Ocorreu um erro.",
-            "items_to_show": "Itens a exibir por página:",
-            "showing_results": "Exibindo resultados {from}-{to} de {total}.",
-            "search": "Pesquisar",
-            "clicked": "Você clicou no exemplo 1",
-            "example2": "Exemplo 2",
-            "clicked2": "Você clicou no exemplo 2",
-            "private_channel": "Canal privado",
-            "new_private_message": "Nova mensagem privada",
-            "public_channel": "Canal público",
-            "new_public_message": "Nova mensagem pública"
-        },
-        "validation": {
-            "message": "Os dados fornecidos são inválidos",
-            "accepted": "O {attribute} deve ser aceito.",
-            "active_url": "O {attribute} não é uma URL válida.",
-            "after": "O {attribute} deve ser uma data após {date}.",
-            "after_or_equal": "O {attribute} deve ser uma data depois ou igual a {date}.",
-            "alpha": "O {attribute} deve conter apenas letras.",
-            "alpha_dash": "O {attribute} deve conter apenas letras, números e traços.",
-            "alpha_num": "O {attribute} deve conter apenas letras e números.",
-            "array": "O {attribute} deve ser um array.",
-            "before": "O {attribute} deve ser uma data antes de {date}.",
-            "before_or_equal": "O {attribute} deve ser uma data antes ou igual a {date}.",
-            "between": {
-                "numeric": "O {attribute} deve ter entre {min} e {max}.",
-                "file": "O {attribute} deve ter entre {min} e {max} kilobytes.",
-                "string": "O {attribute} deve ter entre {min} e {max} characters.",
-                "array": "O {attribute} deve ter entre {min} e {max} items."
-            },
-            "boolean": "O campo {attribute} deve ser verdadeiro ou false.",
-            "confirmed": "A confirmação de {attribute} e a {attribute} devem ser iguais.",
-            "date": "O {attribute} não é uma data válida.",
-            "date_format": "O {attribute} não é do formato {format}.",
-            "different": "O {attribute} e {other} devem ser diferentes.",
-            "digits": "O {attribute} deve ser de {digits} digitos.",
-            "digits_between": "O {attribute} deve ter entre {min} e {max} digitos.",
-            "dimensions": "O {attribute} possui dimensões de imagem inválidas.",
-            "distinct": "O campo {attribute} possui um valor duplicado.",
-            "email": "O {attribute} deve ser um endereço de e-mail válido.",
-            "exists": "O {attribute} selecionado é inválido.",
-            "file": "O {attribute} deve ser um arquivo.",
-            "filled": "O campo {attribute} deve ter um valor.",
-            "image": "O {attribute} deve ser uma imagem.",
-            "in": "O {attribute} selecionado é inválido.",
-            "in_array": "O campo {attribute} não existe no {other}.",
-            "integer": "O {attribute} deve ser um inteiro.",
-            "ip": "O {attribute} deve ser um endereço IP válido.",
-            "ipv4": "O {attribute} deve ser um endereço IPv4 válido.",
-            "ipv6": "O {attribute} deve ser um endereço IPv6 válido.",
-            "json": "O {attribute} deve ser uma string JSON válida.",
-            "max": {
-                "numeric": "O {attribute} não pode ser maior que {max}.",
-                "file": "O {attribute} não pode ser maior que {max} kilobytes.",
-                "string": "O {attribute} não pode ser maior que {max} caracteres.",
-                "array": "O {attribute} não deve ter mais que {max} itens."
-            },
-            "mimes": "O {attribute} deve ser um arquivo do tipo: {values}.",
-            "mimetypes": "O {attribute} deve ser um arquivo do tipo: {values}.",
-            "min": {
-                "numeric": "O {attribute} deve ser de pelo menos {min}.",
-                "file": "O {attribute} deve ser de pelo menos {min} kilobytes.",
-                "string": "O {attribute} deve ser de pelo menos {min} caracteres.",
-                "array": "O {attribute} deve ser de pelo menos {min} itens."
-            },
-            "not_in": "O {attribute} selecionado é inválido.",
-            "numeric": "O {attribute} deve ser um número.",
-            "present": "O campo {attribute} deve estar presente.",
-            "regex": "O formato de {attribute} inválido.",
-            "required": "O campo {attribute} é obrigatório.",
-            "required_if": "O campo {attribute} é obrigatório quando {other} é {value}.",
-            "required_unless": "O campo {attribute} é obrigatório a não ser que {other} esteja em {values}.",
-            "required_with": "O campo {attribute} é obrigatório quando {values} está presente.",
-            "required_with_all": "O campo {attribute} é obrigatório quando {values} está presente.",
-            "required_without": "O campo {attribute} é obrigatório quando {values} não está presente.",
-            "required_without_all": "O campo {attribute} é obrigatório quando nenhum dos {values} estão presentes.",
-            "same": "O {attribute} e {other} devem ser iguais.",
-            "size": {
-                "numeric": "O {attribute} deve ser de {size}.",
-                "file": "O {attribute} deve ser de {size} kilobytes.",
-                "string": "O {attribute} deve conter {size} caracteres.",
-                "array": "O {attribute} deve conter {size} itens."
-            },
-            "string": "O {attribute} precisa ser uma string.",
-            "timezone": "O {attribute} precisa ser um timezone válido.",
-            "unique": "O {attribute} já foi escolhido.",
-            "uploaded": "O {attribute} falhou ao fazer upload.",
-            "url": "O formato de {attribute} é inválido.",
-            "custom": {
-                "attribute-name": {
-                    "rule-name": "custom-message"
-                }
-            },
-            "attributes": {
-                "email": "e-mail",
-                "password": "senha",
-                "type_id": "user type"
-            }
-        },
-        "front": {
-            "deleted_successfully": "Apagado com sucesso.",
-            "password_changed_successfully": "Senha alterada com sucesso.",
-            "passwords_not_match": "Senhas não coincidem.",
-            "settings": "Configurações",
-            "delete_user_confirmation": "Tem certeza que deseja apagar esse usuário?",
-            "language": "Português"
         }
     }
 }

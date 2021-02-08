@@ -3,7 +3,7 @@
 return [
 
     'confirm_password' => 'Confirmar contraseña',
-    'description' => 'Una plantilla repetitiva de Laravel 6 Single Page Application utilizando Vue.js 2.6, Bootstrap 4, TypeScript, Sass y Pug.',
+    'description' => 'Blog echo park intelligentsia shaman flannel letterpress. Lumbersexual waistcoat pork belly four loko swag semiotics af disrupt squid. ',
     'forgot_password' => '¿Olvidaste tu contraseña?',
     'login' => 'Iniciar sesión',
     'keep_connected' => 'Mantenme conectado',

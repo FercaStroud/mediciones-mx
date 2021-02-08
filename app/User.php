@@ -50,9 +50,9 @@ class User extends Authenticatable implements JWTSubject
     {
         switch ($this->type_id) {
             case 1:
-            return '/';
+                return '/';
             default:
-            return '/example'; // TODO change
+                return '/dashboard';
         }
     }
 

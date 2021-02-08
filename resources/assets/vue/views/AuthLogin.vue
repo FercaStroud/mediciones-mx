@@ -83,7 +83,7 @@ b-form#login(@submit='login')
         unchecked-value=false,
       ) {{ $t('login.keep_connected') }}
 
-      b-button.content-vertical.text-secondary(variant='link', to='/password/reset')
+      //b-button.content-vertical.text-secondary(variant='link', to='/password/reset')
         v-icon(name='question-circle')
         | &nbsp;{{ $t('login.forgot_password') }}
 
@@ -94,10 +94,10 @@ b-form#login(@submit='login')
       :class='{ disabled: isSending }',
     ) {{ $t('login.login') }}
 
-    b-button(
+    //b-button(
       variant='primary',
       to='/register',
-    ) {{ $t('login.register') }}
+    //) {{ $t('login.register') }}
 </template>
 
 <style scoped>
