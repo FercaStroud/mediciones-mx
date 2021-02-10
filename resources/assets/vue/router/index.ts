@@ -10,6 +10,7 @@ const Example = () => import('../views/Example.vue');
 const Home = () => import('../views/Home.vue');
 //const Messages = () => import('../views/Messages.vue');
 const Users = () => import('../views/Users.vue');
+const Surveys = () => import('../views/Surveys.vue');
 const Dashboard = () => import('../views/Dashboard.vue');
 
 import userTypes from '@/utils/userTypes';
@@ -37,6 +38,15 @@ const router = new Router({
       component: Dashboard,
       meta: {
         title: Vue.i18n.translate('strings.dashboard', null),
+        auth: true,
+      },
+    },
+    {
+      path: '/surveys',
+      name: 'surveys',
+      component: Surveys,
+      meta: {
+        title: Vue.i18n.translate('strings.surveys', null),
         auth: true,
       },
     },
