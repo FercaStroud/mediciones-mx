@@ -34,6 +34,7 @@ class SurveyController extends Controller
         ]);
 
         $survey = new Survey($request->all());
+        $survey->user_id = $request->user()->id;
 
         $survey->save();
         return response()->json($survey, 201);

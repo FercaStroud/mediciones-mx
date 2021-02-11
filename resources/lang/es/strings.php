@@ -41,4 +41,9 @@ return [
     'public_channel' => 'Canal público',
     'new_public_message' => 'Nuevo mensaje público',
 
+    //
+    'created_at' => 'Fecha de Creación',
+    'updated_at' => 'Fecha de Actualización',
+    'actions' => 'Acciones',
+
 ];

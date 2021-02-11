@@ -27,8 +27,12 @@ export default class SurveyList extends Vue {
 
   mounted() {
     this.$nextTick(() => {
-      //this.getSurveys(parseInt(this.$route.params.id));
+      this.getSurveys(parseInt(this.actualUser.id));
     })
+  }
+
+  get actualUser() {
+    return this.$auth.user();
   }
 
   handleEditSurvey(survey: Survey):void{
@@ -37,12 +41,12 @@ export default class SurveyList extends Vue {
     this.setModalVisible(true);
   }
 
-  async deleteSurveyConfirm(Survey: Survey): Promise<void> {
+  async deleteSurveyConfirm(survey: Survey): Promise<void> {
     if (!(await dialog('front.delete_survey_confirmation', true))) {
       return;
     }
 
-    this.deleteSurvey(category);
+    this.deleteSurvey(survey);
   }
 
   async getSurveys(user_id: number): Promise<void> {
@@ -71,12 +75,20 @@ export default class SurveyList extends Vue {
         div.text-center.text-danger
           b-spinner.align-middle
 
-      template(v-slot:head(name)="data")
-        span {{$t("categories.name")}}
+      template(v-slot:head(name)="title")
+        span {{$t("surveys.title")}}
+      template(v-slot:head(slug)="data")
+        span {{$t("surveys.slug")}}
       template(v-slot:head(description)="data")
-        span {{$t("categories.description")}}
-      template(v-slot:head(image_src)="data")
-        span {{$t("categories.image_src")}}
+        span {{$t("surveys.description")}}
+      template(v-slot:head(welcome_text)="data")
+        span {{$t("surveys.welcome_text")}}
+      template(v-slot:head(end_text)="data")
+        span {{$t("surveys.end_text")}}
+      //template(v-slot:head(start_at)="data")
+        span {{$t("strings.start_at")}}
+      //template(v-slot:head(ends_at)="data")
+        span {{$t("strings.ends_at")}}
       template(v-slot:head(created_at)="data")
         span {{$t("strings.created_at")}}
       template(v-slot:head(updated_at)="data")
@@ -84,17 +96,11 @@ export default class SurveyList extends Vue {
       template(v-slot:head(actions)="data")
         span {{$t("strings.actions")}}
 
-      template(v-slot:cell(image_src)="data")
-        img(
-          v-if="data.item.image_src"
-          :src='"/uploads/images/categories/" + data.item.image_src'
-          style="width:108px;height:20px"
-        )
 
       template(v-slot:cell(actions)="data")
         b-button.btn.table-btn.mb-2(
           size="sm"
-          @click="handleEditCategory(data.item)"
+          @click="handleEditSurvey(data.item)"
           :title="$t('strings.edit')"
         )
           b-icon(
@@ -103,7 +109,7 @@ export default class SurveyList extends Vue {
           )
         b-button.btn-danger.table-btn.mb-2(
           :title="$t('strings.delete')"
-          @click="deleteCategoryConfirm(data.item)"
+          @click="deleteSurveyConfirm(data.item)"
           size="sm"
         )
           b-icon(

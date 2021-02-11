@@ -8,7 +8,10 @@ import {
   ListGroupPlugin,
   NavbarPlugin,
   BContainer,
+  BTable,
+  BSpinner,
   BRow,
+  BIcon,
   BCol,
   BBadge,
   BLink,
@@ -35,6 +38,9 @@ Vue.use(FormPlugin);
 Vue.use(ListGroupPlugin);
 Vue.use(NavbarPlugin);
 Vue.component('b-container', BContainer);
+Vue.component('b-table', BTable);
+Vue.component('b-spinner', BSpinner);
+Vue.component('b-icon', BIcon);
 Vue.component('b-row', BRow);
 Vue.component('b-col', BCol);
 Vue.component('b-badge', BBadge);

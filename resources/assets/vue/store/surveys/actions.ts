@@ -5,12 +5,13 @@ const loadSurveys = async ({ commit }, payload) => {
   commit('SET_LOADING', true);
 
   try {
-    const response = await axios.get(`surveys?menu_id=${payload.user_id}`);
+    const response = await axios.get(`surveys?user_id=${payload.user_id}`);
     const checkErrors = checkResponse(response);
 
     if (checkErrors) {
       commit('SET_DIALOG_MESSAGE', checkErrors.message, { root: true });
     } else {
+      console.log(response,"responseaksjhdfgaksjdhfga")
       commit('SET_SURVEYS', response);
     }
   } catch (e) {

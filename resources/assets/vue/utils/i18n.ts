@@ -7,12 +7,11 @@ import Locales from '@/vue-i18n-locales.generated';
 
 Vue.use(vuexI18n.plugin, store);
 
-Vue.i18n.add('en', Locales.en);
-Vue.i18n.add('pt', Locales.pt);
 Vue.i18n.add('es', Locales.es);
+Vue.i18n.add('en', Locales.en);
 
 const htmlTag = document.documentElement;
-let lang = 'en';
+let lang = 'es';
 
 if (htmlTag) {
   lang = htmlTag.lang;

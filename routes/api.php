@@ -30,8 +30,11 @@ Route::group([
     'middleware' => ['jwt.auth'],
 ], function () {
     Route::get('vue', 'HomeController@vue');
-
     Route::post('settings', 'SettingController@saveSettings');
+
+    Route::resource('surveys', 'Resources\SurveyController', [
+        'except' => ['create', 'edit', 'show'],
+    ]);
 });
 
 Route::group([

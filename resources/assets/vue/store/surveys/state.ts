@@ -19,12 +19,12 @@ export default {
     {
       key: 'end_text',
     },
-    {
+    /*{
       key: 'start_at',
     },
     {
       key: 'ends_at',
-    },
+    },*/
     {
       key: 'created_at',
     },
@@ -35,7 +35,7 @@ export default {
       key: 'actions',
     },
   ],
-  users: [],
+  surveys: [],
   form:{},
   isModalAdd: false,
   isLoading: false,
