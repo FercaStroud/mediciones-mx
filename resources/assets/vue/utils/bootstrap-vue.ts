@@ -1,6 +1,7 @@
 import Vue from 'vue';
 
 import {
+  BootstrapVueIcons,
   CardPlugin,
   ButtonPlugin,
   ModalPlugin,
@@ -16,6 +17,7 @@ import {
   BBadge,
   BLink,
   BFormSelect,
+  BFormSelectOption,
   BFormInput,
   BPagination,
   BFormGroup,
@@ -37,6 +39,8 @@ Vue.use(ModalPlugin);
 Vue.use(FormPlugin);
 Vue.use(ListGroupPlugin);
 Vue.use(NavbarPlugin);
+Vue.use(BootstrapVueIcons);
+
 Vue.component('b-container', BContainer);
 Vue.component('b-table', BTable);
 Vue.component('b-spinner', BSpinner);
@@ -47,6 +51,7 @@ Vue.component('b-badge', BBadge);
 Vue.component('b-link', BLink);
 Vue.component('b-form-input', BFormInput);
 Vue.component('b-form-select', BFormSelect);
+Vue.component('b-form-select-option', BFormSelectOption);
 Vue.component('b-form-group', BFormGroup);
 Vue.component('b-form-textarea', BFormTextarea);
 Vue.component('b-form-file', BFormFile);

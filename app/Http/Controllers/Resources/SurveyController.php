@@ -19,7 +19,8 @@ class SurveyController extends Controller
      */
     public function index(Request $request)
     {
-        return Survey::where("user_id", "=", $request->get("user_id"))->get();
+        return Survey::where("user_id", "=", $request->get("user_id"))
+            ->orderBy('id', 'ASC')->get();
     }
 
     /**
@@ -48,7 +49,7 @@ class SurveyController extends Controller
     public function update(Request $request, Survey $survey)
     {
         $request->validate([
-            'name' => 'required',
+            'title' => 'required',
             'slug' => 'required',
         ]);
 

@@ -39,7 +39,7 @@ export default class TheHeader extends Vue {
 <template lang="pug">
 div
   b-navbar.navbar-expand-lg.bg-light(type='light', style='background-color: #f8f9fa;')
-    b-container
+    b-container(fluid="" )
       b-link.back-button.text-secondary(v-show='path !== homePath', :to='backUrl')
         v-icon(name='arrow-left')
 

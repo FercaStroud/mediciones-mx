@@ -1,17 +1,17 @@
 import axios from 'axios';
 import checkResponse from '@/utils/checkResponse';
 
-const loadSurveys = async ({ commit }, payload) => {
+const loadQuestions = async ({ commit }, payload) => {
   commit('SET_LOADING', true);
 
   try {
-    const response = await axios.get(`surveys?user_id=${payload.user_id}`);
+    const response = await axios.get(`questions?survey_id=${payload.survey_id}`);
     const checkErrors = checkResponse(response);
 
     if (checkErrors) {
       commit('SET_DIALOG_MESSAGE', checkErrors.message, { root: true });
     } else {
-      commit('SET_SURVEYS', response);
+      commit('SET_QUESTIONS', response);
     }
   } catch (e) {
     commit('SET_DIALOG_MESSAGE', 'errors.generic_error', { root: true });
@@ -20,30 +20,27 @@ const loadSurveys = async ({ commit }, payload) => {
   }
 };
 
-const addSurvey = async ({ commit }, payload) => {
+const addQuestion = async ({ commit }, payload) => {
 
-  const survey = {
-    title: payload.title,
-    slug: payload.slug,
-    description: payload.description,
-    //anonymized: payload.anonymized,
-    //active: payload.active,
-    welcome_text: payload.welcome_text,
-    end_text: payload.end_text,
-    //starts_at: payload.starts_at,
-    //end_at: payload.end_at,
-  };
+  const formData = new FormData();
+  formData.append('input_type_id', payload.input_type_id);
+  formData.append('survey_id', payload.survey_id);
+  formData.append('title', payload.title);
+  if(payload.src !== "undefined" && payload.src !== undefined) {
+    formData.append('src', payload.src);
+  }
+  formData.append('order', payload.order);
 
   commit('SET_MODAL_LOADING', true);
 
   try {
-    const response = await axios.post('surveys', survey);
+    const response = await axios.post('questions', formData);
     const checkErrors = checkResponse(response);
 
     if (checkErrors) {
       commit('SET_DIALOG_MESSAGE', checkErrors.message, { root: true });
     } else {
-      commit('ADD_SURVEY', response.data);
+      commit('ADD_QUESTION', response.data);
       commit('SET_MODAL_VISIBLE', false);
     }
   } catch {
@@ -53,29 +50,24 @@ const addSurvey = async ({ commit }, payload) => {
   }
 };
 
-const editSurvey = async ({ commit }, payload) => {
-  const survey = {
-    title: payload.title,
-    slug: payload.slug,
-    description: payload.description,
-    //anonymized: payload.anonymized,
-    //active: payload.active,
-    welcome_text: payload.welcome_text,
-    end_text: payload.end_text,
-    //starts_at: payload.starts_at,
-    //end_at: payload.end_at,
-  };
+const editQuestion = async ({ commit }, payload) => {
+  const formData = new FormData();
+  formData.append('input_type_id', payload.input_type_id);
+  formData.append('survey_id', payload.survey_id);
+  formData.append('title', payload.title);
+  formData.append('src', payload.src);
+  formData.append('order', payload.order);
 
   commit('SET_MODAL_LOADING', true);
 
   try {
-    const response = await axios.put(`surveys/${payload.id}`, survey);
+    const response = await axios.put(`questions/${payload.id}`, formData);
     const checkErrors = checkResponse(response);
 
     if (checkErrors) {
       commit('SET_DIALOG_MESSAGE', checkErrors.message, { root: true });
     } else {
-      commit('UPDATE_SURVEY', response.data);
+      commit('UPDATE_QUESTION', response.data);
       commit('SET_MODAL_VISIBLE', false);
     }
   } catch {
@@ -85,15 +77,15 @@ const editSurvey = async ({ commit }, payload) => {
   }
 };
 
-const deleteSurvey = async ({ commit }, payload) => {
+const deleteQuestion = async ({ commit }, payload) => {
   try {
-    const response = await axios.delete(`surveys/${payload.id}`);
+    const response = await axios.delete(`questions/${payload.id}`);
     const checkErrors = checkResponse(response);
 
     if (checkErrors) {
       commit('SET_DIALOG_MESSAGE', checkErrors.message, { root: true });
     } else {
-      commit('DELETE_SURVEY', payload);
+      commit('DELETE_QUESTION', payload);
       commit('SET_DIALOG_MESSAGE', 'front.deleted_successfully', { root: true });
     }
   } catch {
@@ -116,9 +108,9 @@ const setForm = ({ commit }, payload) => {
 export default {
   setForm,
   setModalAdd,
-  loadSurveys,
-  addSurvey,
-  editSurvey,
-  deleteSurvey,
+  loadQuestions,
+  addQuestion,
+  editQuestion,
+  deleteQuestion,
   setModalVisible,
 };

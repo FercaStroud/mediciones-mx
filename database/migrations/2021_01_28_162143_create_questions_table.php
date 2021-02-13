@@ -16,7 +16,7 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title', 140);
-            $table->string('src', 140);
+            $table->string('src', 140)->nullable();
             $table->tinyInteger('order');
             $table->timestamps();
         });

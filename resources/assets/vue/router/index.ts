@@ -12,6 +12,7 @@ const Home = () => import('../views/Home.vue');
 const Users = () => import('../views/Users.vue');
 const Surveys = () => import('../views/Surveys.vue');
 const Dashboard = () => import('../views/Dashboard.vue');
+const Questions = () => import('../views/Questions.vue');
 
 import userTypes from '@/utils/userTypes';
 
@@ -48,6 +49,15 @@ const router = new Router({
       meta: {
         title: Vue.i18n.translate('strings.surveys', null),
         auth: true,
+      },
+    },
+    {
+      path: '/questions/:survey_id',
+      name: 'questions',
+      component: Questions,
+      meta: {
+        title: Vue.i18n.translate('questions.text', null),
+        auth: true
       },
     },
     /*{

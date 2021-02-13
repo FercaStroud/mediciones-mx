@@ -4,7 +4,7 @@ import { Action, State, namespace } from 'vuex-class';
 
 import dialog from '@/utils/dialog';
 
-const sStore = namespace('surveys');
+const qStore = namespace('questions');
 
 @Component(
     {
@@ -13,21 +13,21 @@ const sStore = namespace('surveys');
     }
 )
 
-export default class SurveyList extends Vue {
-  @sStore.State fields;
-  @sStore.State surveys;
-  @sStore.State isLoading;
-  @sStore.State isModalAdd;
-  @sStore.State form;
-  @sStore.Action deleteSurvey;
-  @sStore.Action loadSurveys;
-  @sStore.Action setModalVisible;
-  @sStore.Action setModalAdd;
-  @sStore.Action setForm;
+export default class QuestionList extends Vue {
+  @qStore.State fields;
+  @qStore.State questions;
+  @qStore.State isLoading;
+  @qStore.State isModalAdd;
+  @qStore.State form;
+  @qStore.Action deleteQuestion;
+  @qStore.Action loadQuestions;
+  @qStore.Action setModalVisible;
+  @qStore.Action setModalAdd;
+  @qStore.Action setForm;
 
   mounted() {
     this.$nextTick(() => {
-      this.getSurveys(parseInt(this.actualUser.id));
+      this.getQuestions(parseInt(this.$route.params.survey_id));
     })
   }
 
@@ -35,26 +35,26 @@ export default class SurveyList extends Vue {
     return this.$auth.user();
   }
 
-  handleEditSurvey(survey: Survey):void{
-    this.setForm(survey);
+  handleEditQuestion(question: Question):void{
+    this.setForm(question);
     this.setModalAdd(false);
     this.setModalVisible(true);
   }
 
-  toQuestionsPage(survey_id: number): void{
-    this.$router.push({path: '/questions/' + survey_id});
+  toAnswersPage(question_id: number): void{
+    this.$router.push({path: '/answers/' + question_id});
   }
 
-  async deleteSurveyConfirm(survey: Survey): Promise<void> {
-    if (!(await dialog('front.delete_survey_confirmation', true))) {
+  async deleteQuestionConfirm(question: Question): Promise<void> {
+    if (!(await dialog('front.delete_question_confirmation', true))) {
       return;
     }
 
-    this.deleteSurvey(survey);
+    this.deleteQuestion(question);
   }
 
-  async getSurveys(user_id: number): Promise<void> {
-    this.loadSurveys({ user_id });
+  async getQuestions(survey_id: number): Promise<void> {
+    this.loadQuestions({ survey_id });
   }
 }
 </script>
@@ -63,7 +63,7 @@ export default class SurveyList extends Vue {
   div
     b-button.btn.table-btn.mr-2(
       style="margin-bottom: 5px"
-      @click="getSurveys(parseInt(actualUser.id))"
+      @click="getQuestions(parseInt($route.params.survey_id))"
     ) {{ $t('strings.update_table') }}
 
     b-table.btable(
@@ -76,7 +76,7 @@ export default class SurveyList extends Vue {
       outlined
       head-variant="dark"
       :busy="isLoading"
-      :items="surveys"
+      :items="questions"
       :fields="fields"
     )
 
@@ -84,22 +84,14 @@ export default class SurveyList extends Vue {
         div.text-center.text-danger
           b-spinner.align-middle
 
-      template(v-slot:head(name)="data")
-        span {{$t("surveys.title")}}
-      template(v-slot:head(slug)="data")
-        span {{$t("surveys.slug")}}
-      template(v-slot:head(description)="data")
-        span {{$t("surveys.description")}}
-      template(v-slot:head(welcome_text)="data")
-        span {{$t("surveys.welcome_text")}}
-      template(v-slot:head(end_text)="data")
-        span {{$t("surveys.end_text")}}
-      template(v-slot:head(questions)="data")
-        span {{$t("surveys.questions")}}
-      //template(v-slot:head(start_at)="data")
-        span {{$t("strings.start_at")}}
-      //template(v-slot:head(ends_at)="data")
-        span {{$t("strings.ends_at")}}
+      template(v-slot:head(src)="data")
+        span {{$t("questions.src")}}
+      template(v-slot:head(order)="data")
+        span {{$t("questions.order")}}
+      template(v-slot:head(input_type_text)="data")
+        span {{$t("questions.input_type_text")}}
+      template(v-slot:head(title)="data")
+        span {{$t("questions.title")}}
       template(v-slot:head(created_at)="data")
         span {{$t("strings.created_at")}}
       template(v-slot:head(updated_at)="data")
@@ -107,11 +99,11 @@ export default class SurveyList extends Vue {
       template(v-slot:head(actions)="data")
         span {{$t("strings.actions")}}
 
-      template(v-slot:cell(questions)="data")
+      template(v-slot:cell(answers)="data")
         b-button.btn.table-btn.mr-2(
           style="margin-bottom: 5px"
-          @click="toQuestionsPage(data.item.id)"
-        ) {{ $t('surveys.view_questions') }}
+          @click="toAnswersPage(data.item.id)"
+        ) {{ $t('questions.view_answers') }}
 
       template(v-slot:cell(created_at)="data")
         span {{ data.item.created_at | moment("dddd D, MMMM YYYY") }}
@@ -125,7 +117,7 @@ export default class SurveyList extends Vue {
         b-button.btn.table-btn.mb-2(
           size="sm"
           style="margin-right: 5px"
-          @click="handleEditSurvey(data.item)"
+          @click="handleEditQuestion(data.item)"
           :title="$t('strings.edit')"
         )
           b-icon(
@@ -135,7 +127,7 @@ export default class SurveyList extends Vue {
 
         b-button.btn-danger.table-btn.mb-2(
           :title="$t('strings.delete')"
-          @click="deleteSurveyConfirm(data.item)"
+          @click="deleteQuestionConfirm(data.item)"
           size="sm"
         )
           b-icon(

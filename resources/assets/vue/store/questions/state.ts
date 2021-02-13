@@ -1,33 +1,23 @@
 export default {
   fields: [
     {
-      key: 'index',
-      label: '#',
+      key: 'order',
+    },
+    {
+      key: 'src',
     },
     {
       key: 'title',
     },
-    {
-      key: 'slug',
-    },
-    {
-      key: 'description',
-    },
-    {
-      key: 'welcome_text',
-    },
-    {
-      key: 'end_text',
-    },
-    {
-      key: 'questions',
-    },
     /*{
-      key: 'start_at',
+      key: 'input_type_text',
+    },*/
+    {
+      key: 'title',
     },
     {
-      key: 'ends_at',
-    },*/
+      key: 'answers',
+    },
     {
       key: 'created_at',
     },
@@ -38,7 +28,7 @@ export default {
       key: 'actions',
     },
   ],
-  surveys: [],
+  questions: [],
   form:{},
   isModalAdd: false,
   isLoading: false,

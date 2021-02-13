@@ -14,6 +14,7 @@ import store from './store';
 import './utils/i18n';
 import './utils/axios';
 import './utils/icons';
+import './utils/moment';
 
 import './utils/bootstrap-vue';
 

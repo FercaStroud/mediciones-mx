@@ -16,9 +16,9 @@ export default function configStore(Vue, storeMock) {
   Vue.use(BootstrapVue);
 
   Vue.i18n.add('en', Locales.en);
-  Vue.i18n.add('pt', Locales.pt);
+  Vue.i18n.add('es', Locales.es);
 
-  Vue.i18n.set('en');
+  Vue.i18n.set('es');
 
   Vue.component('v-icon', Icon);
 
