@@ -4,7 +4,7 @@ import { Action, State, namespace } from 'vuex-class';
 
 import dialog from '@/utils/dialog';
 
-const qStore = namespace('questions');
+const aStore = namespace('answers');
 
 @Component(
     {
@@ -13,21 +13,21 @@ const qStore = namespace('questions');
     }
 )
 
-export default class QuestionList extends Vue {
-  @qStore.State fields;
-  @qStore.State questions;
-  @qStore.State isLoading;
-  @qStore.State isModalAdd;
-  @qStore.State form;
-  @qStore.Action deleteQuestion;
-  @qStore.Action loadQuestions;
-  @qStore.Action setModalVisible;
-  @qStore.Action setModalAdd;
-  @qStore.Action setForm;
+export default class AnswerList extends Vue {
+  @aStore.State fields;
+  @aStore.State answers;
+  @aStore.State isLoading;
+  @aStore.State isModalAdd;
+  @aStore.State form;
+  @aStore.Action deleteAnswer;
+  @aStore.Action loadAnswers;
+  @aStore.Action setModalVisible;
+  @aStore.Action setModalAdd;
+  @aStore.Action setForm;
 
   mounted() {
     this.$nextTick(() => {
-      this.getQuestions(parseInt(this.$route.params.survey_id));
+      this.getAnswers(parseInt(this.$route.params.question_id));
     })
   }
 
@@ -35,30 +35,22 @@ export default class QuestionList extends Vue {
     return this.$auth.user();
   }
 
-  handleEditQuestion(question: Question):void{
-    this.setForm(question);
+  handleEditAnswer(answer: Answer):void{
+    this.setForm(answer);
     this.setModalAdd(false);
     this.setModalVisible(true);
   }
 
-  toAnswersPage(question_id: number): void{
-    this.$router.push(
-        {
-          path: '/answers/question/' + question_id + '/survey/' + this.$route.params.survey_id
-        }
-    );
-  }
-
-  async deleteQuestionConfirm(question: Question): Promise<void> {
-    if (!(await dialog('front.delete_question_confirmation', true))) {
+  async deleteAnswerConfirm(answer: Answer): Promise<void> {
+    if (!(await dialog('front.delete_answer_confirmation', true))) {
       return;
     }
 
-    this.deleteQuestion(question);
+    this.deleteAnswer(answer);
   }
 
-  async getQuestions(survey_id: number): Promise<void> {
-    this.loadQuestions({ survey_id });
+  async getAnswers(question_id: number): Promise<void> {
+    this.loadAnswers({ question_id });
   }
 }
 </script>
@@ -67,7 +59,7 @@ export default class QuestionList extends Vue {
   div
     b-button.btn.table-btn.mr-2(
       style="margin-bottom: 5px"
-      @click="getQuestions(parseInt($route.params.survey_id))"
+      @click="getAnswers(parseInt($route.params.question_id))"
     ) {{ $t('strings.update_table') }}
 
     b-table.btable(
@@ -80,7 +72,7 @@ export default class QuestionList extends Vue {
       outlined
       head-variant="dark"
       :busy="isLoading"
-      :items="questions"
+      :items="answers"
       :fields="fields"
     )
 
@@ -88,26 +80,29 @@ export default class QuestionList extends Vue {
         div.text-center.text-danger
           b-spinner.align-middle
 
-      template(v-slot:head(src)="data")
-        span {{$t("questions.src")}}
+      template(v-slot:head(id)="data")
+        span {{$t("answers.id")}}
       template(v-slot:head(order)="data")
-        span {{$t("questions.order")}}
-      template(v-slot:head(input_type_text)="data")
-        span {{$t("questions.input_type_text")}}
+        span {{$t("answers.order")}}
+      template(v-slot:head(value)="data")
+        span {{$t("answers.value")}}
+      template(v-slot:head(src)="data")
+        span {{$t("answers.src")}}
       template(v-slot:head(title)="data")
-        span {{$t("questions.title")}}
-      template(v-slot:head(actions)="data")
-        span {{$t("strings.actions")}}
+        span {{$t("answers.title")}}
+      template(v-slot:head(end_survey)="data")
+        span {{$t("answers.end_survey")}}
+      template(v-slot:head(force_question_id)="data")
+        span {{$t("answers.force_question_id")}}
+      template(v-slot:head(required)="data")
+        span {{$t("answers.required")}}
       template(v-slot:head(created_at)="data")
         .text-nowrap {{$t("strings.created_at")}}
       template(v-slot:head(updated_at)="data")
         .text-nowrap {{$t("strings.updated_at")}}
 
-      template(v-slot:cell(answers)="data")
-        b-button.btn.table-btn.mr-2(
-          style="margin-bottom: 5px"
-          @click="toAnswersPage(data.item.id)"
-        ) {{ $t('questions.view_answers') }}
+      template(v-slot:head(actions)="data")
+        span {{$t("strings.actions")}}
 
       template(v-slot:cell(created_at)="data")
         span {{ data.item.created_at | moment("dddd D, MMMM YYYY") }}
@@ -117,7 +112,7 @@ export default class QuestionList extends Vue {
         b-button.btn.table-btn.mb-2(
           size="sm"
           style="margin-right: 5px"
-          @click="handleEditQuestion(data.item)"
+          @click="handleEditAnswer(data.item)"
           :title="$t('strings.edit')"
         )
           b-icon(
@@ -127,7 +122,7 @@ export default class QuestionList extends Vue {
 
         b-button.btn-danger.table-btn.mb-2(
           :title="$t('strings.delete')"
-          @click="deleteQuestionConfirm(data.item)"
+          @click="deleteAnswerConfirm(data.item)"
           size="sm"
         )
           b-icon(
@@ -138,7 +133,7 @@ export default class QuestionList extends Vue {
       template(v-slot:cell(src)="data")
         img(
           v-if="data.item.src"
-          :src='"/uploads/images/questions/" + data.item.src'
+          :src='"/uploads/images/answers/" + data.item.src'
           style="width:50px;height:50px"
         )
 

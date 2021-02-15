@@ -5,6 +5,9 @@ export default {
       label: '#',
     },
     {
+      key: 'id',
+    },
+    {
       key: 'order',
     },
     {
@@ -13,14 +16,17 @@ export default {
     {
       key: 'title',
     },
-    /*{
-      key: 'input_type_text',
-    },*/
     {
-      key: 'title',
+      key: 'value',
     },
     {
-      key: 'answers',
+      key: 'end_survey',
+    },
+    {
+      key: 'force_question_id',
+    },
+    {
+      key: 'required',
     },
     {
       key: 'created_at',
@@ -32,7 +38,7 @@ export default {
       key: 'actions',
     },
   ],
-  questions: [],
+  answers: [],
   form:{},
   isModalAdd: false,
   isLoading: false,

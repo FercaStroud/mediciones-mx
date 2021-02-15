@@ -38,6 +38,9 @@ Route::group([
     Route::resource('questions', 'Resources\QuestionController', [
         'except' => ['create', 'edit', 'show'],
     ]);
+    Route::resource('answers', 'Resources\AnswerController', [
+        'except' => ['create', 'edit', 'show'],
+    ]);
 });
 
 Route::group([

@@ -42,7 +42,7 @@ export default class SurveyList extends Vue {
   }
 
   toQuestionsPage(survey_id: number): void{
-    this.$router.push({path: '/questions/' + survey_id});
+    this.$router.push({path: '/questions/survey/' + survey_id});
   }
 
   async deleteSurveyConfirm(survey: Survey): Promise<void> {

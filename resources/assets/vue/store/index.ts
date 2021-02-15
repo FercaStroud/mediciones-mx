@@ -12,6 +12,7 @@ import messages from './messages';
 import users from './users';
 import surveys from './surveys';
 import questions from './questions';
+import answers from './answers';
 
 Vue.use(Vuex);
 
@@ -19,7 +20,8 @@ const modules = {
   messages,
   users,
   surveys,
-  questions
+  questions,
+  answers
 };
 
 const store = new Vuex.Store({

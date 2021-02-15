@@ -19,8 +19,9 @@ class CreateAnswersTable extends Migration
             $table->string('value', 140);
             $table->tinyInteger('order');
             $table->boolean('end_survey');
+            $table->string('src', 140)->nullable();
             $table->boolean('required');
-            $table->bigInteger('parent_id')->default(0);
+            $table->bigInteger('force_question_id')->nullable();
 
             $table->timestamps();
         });

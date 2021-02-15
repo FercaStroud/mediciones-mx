@@ -13,6 +13,7 @@ const Users = () => import('../views/Users.vue');
 const Surveys = () => import('../views/Surveys.vue');
 const Dashboard = () => import('../views/Dashboard.vue');
 const Questions = () => import('../views/Questions.vue');
+const Answers = () => import('../views/Answers.vue');
 
 import userTypes from '@/utils/userTypes';
 
@@ -38,7 +39,7 @@ const router = new Router({
       name: 'dashboard',
       component: Dashboard,
       meta: {
-        title: Vue.i18n.translate('strings.dashboard', null),
+        title: Vue.i18n.translate('dashboard.meta_title', null),
         auth: true,
       },
     },
@@ -47,16 +48,25 @@ const router = new Router({
       name: 'surveys',
       component: Surveys,
       meta: {
-        title: Vue.i18n.translate('strings.surveys', null),
+        title: Vue.i18n.translate('surveys.meta_title', null),
         auth: true,
       },
     },
     {
-      path: '/questions/:survey_id',
+      path: '/questions/survey/:survey_id',
       name: 'questions',
       component: Questions,
       meta: {
-        title: Vue.i18n.translate('questions.text', null),
+        title: Vue.i18n.translate('questions.meta_title', null),
+        auth: true
+      },
+    },
+    {
+      path: '/answers/question/:question_id/survey/:survey_id',
+      name: 'answers',
+      component: Answers,
+      meta: {
+        title: Vue.i18n.translate('answers.meta_title', null),
         auth: true
       },
     },

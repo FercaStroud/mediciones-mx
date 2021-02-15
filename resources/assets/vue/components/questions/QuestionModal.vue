@@ -8,7 +8,6 @@ const qStore = namespace('questions');
 export default class QuestionModal extends Vue {
   @Prop() form;
   @Prop() isAdd;
-  @Prop() questions;
   @Prop() isVisible;
   @qStore.Action addQuestion;
   @qStore.Action editQuestion;
@@ -37,11 +36,10 @@ export default class QuestionModal extends Vue {
     :cancel-title='$t("buttons.cancel")',
     :ok-disabled='isModalLoading',
     :ok-title='isModalLoading ? $t("buttons.sending") : isAdd ? $t("buttons.add") : $t("buttons.update")',
-    :title='isAdd ? $t("questions.add_question") : $t("questions.add_survey")',
+    :title='isAdd ? $t("questions.add_question") : $t("questions.edit_question")',
     @hide='handleClose',
     @ok.prevent='handleOk',
   )
-    p {{this.form}}
     b-form
       b-form-group(
         :label='$t("questions.form_survey_id")'
@@ -83,7 +81,7 @@ export default class QuestionModal extends Vue {
       b-form-group(
         :label='$t("questions.form_order")'
         :description='$t("questions.form_order")'
-        label-for='slug',
+        label-for='order',
       )
         b-form-input#order(
           type='number',
