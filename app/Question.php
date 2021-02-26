@@ -29,4 +29,15 @@ class Question extends Model
 
     protected $hidden = [
     ];
+
+
+    public function answers()
+    {
+        return $this->hasMany('App\Answer');
+    }
+
+    public function survey()
+    {
+        return $this->belongsTo('App\Survey');
+    }
 }

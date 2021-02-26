@@ -32,4 +32,10 @@ class Answer extends Model
 
     protected $hidden = [
     ];
+
+
+    public function question()
+    {
+        return $this->belongsTo('App\Question');
+    }
 }

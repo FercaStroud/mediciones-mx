@@ -1,6 +1,25 @@
 import axios from 'axios';
 import checkResponse from '@/utils/checkResponse';
 
+const loadSurveyBySlug = async ({ commit }, payload) => {
+  commit('SET_LOADING', true);
+
+  try {
+    const response = await axios.get(`survey/getBy/slug/${payload.slug}`);
+    const checkErrors = checkResponse(response);
+
+    if (checkErrors) {
+      commit('SET_DIALOG_MESSAGE', checkErrors.message, { root: true });
+    } else {
+      commit('SET_SURVEY', response);
+    }
+  } catch (e) {
+    commit('SET_DIALOG_MESSAGE', 'errors.generic_error', { root: true });
+  } finally {
+    commit('SET_LOADING', false);
+  }
+};
+
 const loadSurveys = async ({ commit }, payload) => {
   commit('SET_LOADING', true);
 
@@ -117,6 +136,7 @@ export default {
   setForm,
   setModalAdd,
   loadSurveys,
+  loadSurveyBySlug,
   addSurvey,
   editSurvey,
   deleteSurvey,

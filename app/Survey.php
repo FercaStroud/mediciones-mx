@@ -34,4 +34,10 @@ class Survey extends Model
 
     protected $hidden = [
     ];
+
+    public function questions()
+    {
+        return $this->hasMany('App\Question');
+    }
+
 }

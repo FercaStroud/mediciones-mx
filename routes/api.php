@@ -66,3 +66,5 @@ Route::any('messages/{type}/{id}', function ($type, $id) {
 
     return response()->json($data);
 });
+
+Route::get('survey/getBy/slug/{slug}', 'Resources\SurveyController@getBySlug');

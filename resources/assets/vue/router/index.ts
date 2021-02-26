@@ -14,6 +14,7 @@ const Surveys = () => import('../views/Surveys.vue');
 const Dashboard = () => import('../views/Dashboard.vue');
 const Questions = () => import('../views/Questions.vue');
 const Answers = () => import('../views/Answers.vue');
+const PublicSurvey = () => import('../views/PublicSurvey.vue');
 
 import userTypes from '@/utils/userTypes';
 
@@ -41,6 +42,15 @@ const router = new Router({
       meta: {
         title: Vue.i18n.translate('dashboard.meta_title', null),
         auth: true,
+      },
+    },
+    {
+      path: '/survey/slug/:slug',
+      name: 'survey',
+      component: PublicSurvey,
+      meta: {
+        title: Vue.i18n.translate('surveys.public_meta_title', null),
+        auth: false,
       },
     },
     {

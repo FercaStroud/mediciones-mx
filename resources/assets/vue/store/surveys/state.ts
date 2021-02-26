@@ -39,6 +39,7 @@ export default {
     },
   ],
   surveys: [],
+  survey:[],
   form:{},
   isModalAdd: false,
   isLoading: false,

@@ -54,20 +54,27 @@ export default class App extends Vue {
 </script>
 
 <template lang="pug">
-div.app(v-show='$auth.ready()')
-  dialogs-wrapper
-  div(v-if='$auth.check()')
-    the-header
-    router-view(v-if='$auth.ready()')
-  base-auth(v-else)
-  .languages
-    b-button(
-      v-for='locale, i in locales',
-      :class='{ active: activeLocale === locale.name }',
-      :key='i',
-      :title='locale.title',
-      @click='changeLocale(locale.name)',
-    ) {{ locale.flag }}
+div(v-if="this.$route.name === 'survey'")
+  div.app()
+    router-view
+div(
+  v-else,
+  style="height: 100%;"
+)
+  div.app(v-show='$auth.ready()')
+    dialogs-wrapper
+    div(v-if='$auth.check()')
+      the-header
+      router-view(v-if='$auth.ready()')
+    base-auth(v-else)
+    .languages
+      b-button(
+        v-for='locale, i in locales',
+        :class='{ active: activeLocale === locale.name }',
+        :key='i',
+        :title='locale.title',
+        @click='changeLocale(locale.name)',
+      ) {{ locale.flag }}
 </template>
 
 <style lang="scss">

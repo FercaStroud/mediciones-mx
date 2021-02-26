@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Resources;
 
+use App\Question;
 use App\Survey;
 use App\User;
 use Illuminate\Database\QueryException;
@@ -21,6 +22,19 @@ class SurveyController extends Controller
     {
         return Survey::where("user_id", "=", $request->get("user_id"))
             ->orderBy('id', 'ASC')->get();
+    }
+
+    public function getBySlug(Request $request, $slug)
+    {
+        $survey = Survey::where('slug', '=', $slug)->get();
+        $survey[0]['questions'] = Survey::find($survey[0]['id'])->questions;
+
+        foreach ($survey[0]['questions'] as $key => $question){
+            $survey[0]['questions'][$key]['answers'] = Question::find($question['id'])->answers;
+        }
+
+        return response()->json($survey, 201);
+
     }
 
     /**

@@ -1,5 +1,9 @@
 import Vue from 'vue';
 
+const SET_SURVEY = (state, payload) => {
+  state.survey = payload.data;
+};
+
 const SET_SURVEYS = (state, payload) => {
   state.surveys = payload.data;
 };
@@ -45,6 +49,7 @@ const SET_FORM = (state, payload) => {
 
 export default {
   SET_FORM,
+  SET_SURVEY,
   SET_SURVEYS,
   ADD_SURVEY,
   UPDATE_SURVEY,
