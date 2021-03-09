@@ -96,6 +96,8 @@ export default class SurveyList extends Vue {
         span {{$t("surveys.end_text")}}
       template(v-slot:head(questions)="data")
         span {{$t("surveys.questions")}}
+      template(v-slot:head(active)="data")
+        span {{$t("surveys.active")}}
       //template(v-slot:head(start_at)="data")
         span {{$t("strings.start_at")}}
       //template(v-slot:head(ends_at)="data")
@@ -107,6 +109,9 @@ export default class SurveyList extends Vue {
       template(v-slot:head(actions)="data")
         span {{$t("strings.actions")}}
 
+      template(v-slot:cell(active)="data")
+        b-button(v-if="data.item.active === 1" variant="outline-success" disabled ) {{ $t('surveys.active_true') }}
+        b-button(v-else disabled variant="outline-secondary") {{ $t('surveys.active_false') }}
       template(v-slot:cell(questions)="data")
         b-button.btn.table-btn.mr-2(
           style="margin-bottom: 5px"

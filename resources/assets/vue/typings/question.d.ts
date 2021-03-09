@@ -5,4 +5,5 @@ declare interface Question {
   title: string;
   src: any;
   order: number;
+  required: boolean;
 }

@@ -2,5 +2,5 @@
 
 return [
     'title' => 'Surveys',
-
+    'description' => 'Description'
 ];

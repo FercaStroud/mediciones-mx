@@ -95,6 +95,17 @@ export default class SurveyModal extends Vue {
           v-model='form.end_text',
         )
 
+      b-form-group(
+        :label='$t("surveys.active")',
+        :description='$t("surveys.active_description")',
+        label-for='active',
+      )
+        b-form-checkbox#active(
+          name="active",
+          switch,
+          v-model='form.active',
+        )
+
 
 
 </template>

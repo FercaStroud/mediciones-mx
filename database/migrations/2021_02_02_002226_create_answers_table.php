@@ -20,7 +20,6 @@ class CreateAnswersTable extends Migration
             $table->tinyInteger('order');
             $table->boolean('end_survey');
             $table->string('src', 140)->nullable();
-            $table->boolean('required');
             $table->bigInteger('force_question_id')->nullable();
 
             $table->timestamps();

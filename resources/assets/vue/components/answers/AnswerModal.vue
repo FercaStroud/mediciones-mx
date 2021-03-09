@@ -133,17 +133,6 @@ export default class QuestionModal extends Vue {
             )
           hr
           b-form-group(
-          :label='$t("answers.form_required")'
-          :description='$t("answers.form_required_description")'
-          label-for='required',
-          )
-            b-form-checkbox#required(
-              name="required",
-              switch,
-              v-model='form.required'
-            )
-          hr
-          b-form-group(
             :label='$t("answers.form_image")'
             label-for='src',
             :description='$t("answers.form_image_description")'

@@ -1,8 +1,8 @@
 
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="es-MX">
 <head>
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', '') }}</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

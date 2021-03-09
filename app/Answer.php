@@ -26,7 +26,6 @@ class Answer extends Model
         'src',
         'order',
         'end_survey',
-        'required',
         'force_question_id',
     ];
 

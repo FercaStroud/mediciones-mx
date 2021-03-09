@@ -94,8 +94,6 @@ export default class AnswerList extends Vue {
         span {{$t("answers.end_survey")}}
       template(v-slot:head(force_question_id)="data")
         span {{$t("answers.force_question_id")}}
-      template(v-slot:head(required)="data")
-        span {{$t("answers.required")}}
       template(v-slot:head(created_at)="data")
         .text-nowrap {{$t("strings.created_at")}}
       template(v-slot:head(updated_at)="data")
@@ -103,6 +101,10 @@ export default class AnswerList extends Vue {
 
       template(v-slot:head(actions)="data")
         span {{$t("strings.actions")}}
+
+      template(v-slot:cell(end_survey)="data")
+        b-button(v-if="data.item.end_survey === 1" variant="outline-success" disabled ) {{ $t('answers.end_survey_true') }}
+        b-button(v-else disabled variant="outline-secondary") {{ $t('answers.end_survey_false') }}
 
       template(v-slot:cell(created_at)="data")
         span {{ data.item.created_at | moment("dddd D, MMMM YYYY") }}

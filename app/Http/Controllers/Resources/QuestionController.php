@@ -40,7 +40,7 @@ class QuestionController extends Controller
         ]);
 
         $question = new Question($request->all());
-
+        $question->required = $request->get("required", 0);
         $question->src = null;
 
         if ($request->has('src') and $request->file('src') !== null) {
@@ -73,6 +73,7 @@ class QuestionController extends Controller
         $question->title = $request->get("title", $question->title);
         $question->order = $request->get("order", $question->order);
         $question->input_type_id = $request->get("input_type_id", $question->input_type_id);
+        $question->required = $request->get("required", $question->required);
 
         if ($request->has('src') and $request->file('src') !== null) {
             $image = $request->file('src');
@@ -83,6 +84,7 @@ class QuestionController extends Controller
             $this->uploadOne($image, $folder, 'public', $name);
             $question->src = $filePath;
         }
+
         $question->save();
 
         return response()->json($question, 201);
@@ -90,13 +92,13 @@ class QuestionController extends Controller
 
 
     /**
-     * @param Request $request
+     * @param Question $question
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function destroy(Request $request)
+    public function destroy(Question $question)
     {
-        $request->delete();
+        $question->delete();
 
         return response()->json(null, 204);
     }

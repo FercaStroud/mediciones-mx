@@ -56,7 +56,6 @@ class AnswerController extends Controller
         }
 
         $answer->end_survey = (int)$request->get('end_survey', 0);
-        $answer->required = (int)$request->get('required', 0);
         $answer->save();
 
         return response()->json($answer, 201);
@@ -79,7 +78,6 @@ class AnswerController extends Controller
         $answer->value = $request->get("value", $answer->value);
         $answer->order = $request->get("order", $answer->order);
         $answer->end_survey = $request->get("end_survey", $answer->end_survey);
-        $answer->required = $request->get("required", $answer->required);
         $answer->force_question_id = $request->get("force_question_id", $answer->force_question_id);
         $answer->end_survey = (int)$request->get('end_survey', $answer->end_survey);
         $answer->required = (int)$request->get('required', $answer->required);
@@ -100,13 +98,13 @@ class AnswerController extends Controller
 
 
     /**
-     * @param Request $request
+     * @param Answer $answer
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function destroy(Request $request)
+    public function destroy(Answer $answer)
     {
-        $request->delete();
+        $answer->delete();
 
         return response()->json(null, 204);
     }

@@ -26,9 +26,6 @@ export default {
       key: 'force_question_id',
     },
     {
-      key: 'required',
-    },
-    {
       key: 'created_at',
     },
     {

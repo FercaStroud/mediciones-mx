@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 const SET_SURVEY = (state, payload) => {
-  state.survey = payload.data;
+  state.survey = payload.data[0];
 };
 
 const SET_SURVEYS = (state, payload) => {

@@ -50,6 +50,8 @@ class SurveyController extends Controller
 
         $survey = new Survey($request->all());
         $survey->user_id = $request->user()->id;
+        $survey->active = (int)$request->get('active', 0);
+
 
         $survey->save();
         return response()->json($survey, 201);
@@ -72,13 +74,13 @@ class SurveyController extends Controller
 
 
     /**
-     * @param Request $request
+     * @param Survey $survey
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function destroy(Request $request)
+    public function destroy(Survey $survey)
     {
-        $request->delete();
+        $survey->delete();
 
         return response()->json(null, 204);
     }

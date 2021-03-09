@@ -35,7 +35,6 @@ const addAnswer = async ({ commit }, payload) => {
   formData.append('value', payload.value);
   formData.append('title', payload.title);
   formData.append('end_survey', payload.end_survey);
-  formData.append('required', payload.required);
 
   if(payload.src !== "undefined" && payload.src !== undefined) {
     formData.append('src', payload.src);
@@ -76,7 +75,6 @@ const editAnswer = async ({ commit }, payload) => {
   formData.append('value', payload.value);
   formData.append('title', payload.title);
   formData.append('end_survey', payload.end_survey);
-  formData.append('required', payload.required);
 
   commit('SET_MODAL_LOADING', true);
 

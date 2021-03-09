@@ -21,6 +21,9 @@ export default {
     },
     {
       key: 'questions',
+    },,
+    {
+      key: 'active',
     },
     /*{
       key: 'start_at',
@@ -39,7 +42,7 @@ export default {
     },
   ],
   surveys: [],
-  survey:[],
+  survey:{},
   form:{},
   isModalAdd: false,
   isLoading: false,

@@ -20,6 +20,9 @@ export default {
       key: 'title',
     },
     {
+      key: 'required',
+    },
+    {
       key: 'answers',
     },
     {

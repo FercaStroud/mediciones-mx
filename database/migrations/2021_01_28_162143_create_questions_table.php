@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->string('title', 140);
             $table->string('src', 140)->nullable();
             $table->tinyInteger('order');
+            $table->boolean('required');
             $table->timestamps();
         });
     }

@@ -94,6 +94,8 @@ export default class QuestionList extends Vue {
         span {{$t("questions.order")}}
       template(v-slot:head(input_type_text)="data")
         span {{$t("questions.input_type_text")}}
+      template(v-slot:head(required)="data")
+        span {{$t("questions.required")}}
       template(v-slot:head(title)="data")
         span {{$t("questions.title")}}
       template(v-slot:head(actions)="data")
@@ -108,6 +110,10 @@ export default class QuestionList extends Vue {
           style="margin-bottom: 5px"
           @click="toAnswersPage(data.item.id)"
         ) {{ $t('questions.view_answers') }}
+
+      template(v-slot:cell(required)="data")
+        b-button(v-if="data.item.required === 1" variant="outline-success" disabled ) {{ $t('questions.required_true') }}
+        b-button(v-else disabled variant="outline-secondary") {{ $t('questions.required_false') }}
 
       template(v-slot:cell(created_at)="data")
         span {{ data.item.created_at | moment("dddd D, MMMM YYYY") }}

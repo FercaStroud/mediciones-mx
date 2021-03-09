@@ -24,6 +24,7 @@ class Question extends Model
         'survey_id',
         'title',
         'src',
+        'required',
         'order',
     ];
 
