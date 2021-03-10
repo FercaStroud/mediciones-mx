@@ -18,17 +18,16 @@ export default class Surveys extends Vue {
 </script>
 
 <template lang="pug">
-  div()
-    b-navbar(type='light' fixed="top")
-      b-navbar-brand(href='#')
+  .survey-container()
+    .navigator-container
+      div
         img(
-          style="width: 100px"
+          style="position:relative;width: 70px;left:-70px;margin-left:100%;padding:10px"
           src='/images/logo.svg',
           alt='Logo'
         )
-      b-navbar-toggle(target='nav-collapse')
     survey-base
-    footer(style="text-align:center")
+    //footer(style="text-align:center")
       img.mb-5(
         style="width: 100px"
         src='/images/logo.svg',
@@ -36,5 +35,13 @@ export default class Surveys extends Vue {
       )
 </template>
 <style lang="scss" scoped>
-
+.survey-container{
+  //background-color: white !important;
+}
+.navigator-container{
+  position: fixed;
+  z-index: 1;
+  background-color: white;
+  width: 100%;
+}
 </style>

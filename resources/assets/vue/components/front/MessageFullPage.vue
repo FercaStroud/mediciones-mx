@@ -9,7 +9,7 @@ export default class MessageFullPage extends Vue {
 </script>
 
 <template lang="pug">
-  .container()
+  .container(style="height:100vh;z-index:9;position:fixed")
     img.mt-5#logo-preloader(
       src='/images/logo.svg',
       alt='Logo'

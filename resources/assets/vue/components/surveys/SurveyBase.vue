@@ -12,7 +12,7 @@ const sStore = namespace('surveys');
     {
       components: {
         MessageFullPage,
-        Preloader
+        Preloader,
       },
       metaInfo() {
         return {
@@ -39,7 +39,7 @@ export default class SurveyBase extends Vue {
   }
 
   async getSurveyBySlug(slug: string): Promise<void> {
-    this.loadSurveyBySlug({ slug });
+    //this.loadSurveyBySlug({ slug });
   }
 }
 </script>
@@ -49,63 +49,93 @@ div
   Preloader(:is-loading="isLoading")
   MessageFullPage(v-if="!survey.active && !isLoading" :message="$t('surveys.survey_disabled')")
 
-  .container(v-if="!isLoading && survey.active")
-    h1 {{survey.title}}
-
-    b-card.mb-2()
-      b-card-text
-        p {{ survey.welcome_text }}
-        strong {{$t('surveys.description')}}
-        p {{ survey.description }}
-
-    .questions
-      b-row
-        b-col(md='12' style='text-align: center' v-for='(question,key) in survey.questions' :key='key')
-          b-card()
-            b-card-title
-              strong(style='color:darkred') *
-              strong.text-primary {{question.title}}
-            img(
-              v-if="question.src !== null"
-              style="width:100%"
-              :src="'uploads/images/questions/' + question.src"
-            )
-            b-card-body
-              b-form-group
-                b-form-radio-group(
-                  :placeholder="$t('surveys.select_a_cuestion')"
-                  stacked
-                  buttons
-                  button-variant='outline-primary'
-                )
-                  b-form-radio(
-                    style="width:100%"
-                    :value="$t('surveys.select_a_cuestion_required')"
-                  )
-                    .full-width {{$t('surveys.select_a_cuestion_required')}}
-                  b-form-radio(
-                    style="width:100%"
-                    v-for="(answer, key) in question.answers"
-                    :key="key"
-                    :value="answer.title"
-                  )
-                    .full-width {{answer.title}}
-                    .full-width
-                      img(
-                        v-if="answer.src !== null"
-                        style="width:100%"
-                        :src="'uploads/images/answers/' + answer.src"
-                      )
-
-    b-card.mb-2()
-      b-card-text
-        p {{ survey.end_text }}
-
-    pre {{survey}}}
-
-
+  swiper(
+    :slides-per-view="3"
+    :space-between="50"
+  )
+    swiper-slide slide1
+    swiper-slide slide2
+    swiper-slide slide3
+  //.app-navigator
+  //  span.text-primary.app-title {{survey.title}}
+  //.container(v-if="!isLoading && survey.active" style="padding-top:110px;")
+  //  .mb-2()
+  //    p {{ survey.welcome_text }}
+  //    strong {{$t('surveys.description')}}
+  //    p {{ survey.description }}
+  //    hr
+  //
+  //  .questions
+  //    b-row
+  //      b-col(md='12' style='text-align: center' v-for='(question,key) in survey.questions' :key='key')
+  //        b-card()
+  //          b-card-title
+  //            strong(style='color:darkred') *
+  //            strong.text-primary {{question.title}}
+  //          img(
+  //            v-if="question.src !== null"
+  //            style="width:100%"
+  //            :src="'uploads/images/questions/' + question.src"
+  //          )
+  //          b-card-body
+  //            b-form-group
+  //              b-form-radio-group(
+  //                :placeholder="$t('surveys.select_a_cuestion')"
+  //                stacked
+  //                buttons
+  //                button-variant='outline-primary'
+  //              )
+  //                b-form-radio(
+  //                  style="width:100%"
+  //                  :value="$t('surveys.select_a_cuestion_required')"
+  //                )
+  //                  .full-width {{$t('surveys.select_a_cuestion_required')}}
+  //                b-form-radio(
+  //                  style="width:100%"
+  //                  v-for="(answer, key) in question.answers"
+  //                  :key="key"
+  //                  :value="answer.title"
+  //                )
+  //                  .full-width {{answer.title}}
+  //                  .full-width
+  //                    img(
+  //                      v-if="answer.src !== null"
+  //                      style="width:100%"
+  //                      :src="'uploads/images/answers/' + answer.src"
+  //                    )
+  //
+  //  .mt-2()
+  //    p {{ survey.end_text }}
+  //    div(style="height:80px")
+  //  //pre {{survey}}}
+  //.app-bottom-navigator.p-2
+  //  b-button(
+  //    variant="primary"
+  //    block
+  //  ) Next
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.app-bottom-navigator{
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  bottom: 0;
+}
+.app-navigator{
+  background-color: white;
+  position: fixed;
+  margin-top: 49px;
+  z-index: 1;
+  width: 100%;
+  height: 40px;
+  //box-shadow: 0px -5px 16px #888888
 
+}
+.app-title{
+  padding: 10px;
+  font-size: 1.4em;
+
+}
 </style>
