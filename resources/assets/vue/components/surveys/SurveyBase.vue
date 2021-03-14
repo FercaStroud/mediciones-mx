@@ -39,7 +39,7 @@ export default class SurveyBase extends Vue {
   }
 
   async getSurveyBySlug(slug: string): Promise<void> {
-    //this.loadSurveyBySlug({ slug });
+    this.loadSurveyBySlug({ slug });
   }
 }
 </script>
@@ -48,14 +48,15 @@ export default class SurveyBase extends Vue {
 div
   Preloader(:is-loading="isLoading")
   MessageFullPage(v-if="!survey.active && !isLoading" :message="$t('surveys.survey_disabled')")
+  pre {{survey}}}
 
-  swiper(
-    :slides-per-view="3"
-    :space-between="50"
-  )
-    swiper-slide slide1
-    swiper-slide slide2
-    swiper-slide slide3
+  //swiper(
+  //  :slides-per-view="3"
+  //  :space-between="50"
+  //)
+  //  swiper-slide slide1
+  //  swiper-slide slide2
+  //  swiper-slide slide3
   //.app-navigator
   //  span.text-primary.app-title {{survey.title}}
   //.container(v-if="!isLoading && survey.active" style="padding-top:110px;")
@@ -107,7 +108,6 @@ div
   //  .mt-2()
   //    p {{ survey.end_text }}
   //    div(style="height:80px")
-  //  //pre {{survey}}}
   //.app-bottom-navigator.p-2
   //  b-button(
   //    variant="primary"

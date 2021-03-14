@@ -8,7 +8,7 @@ export default class Preloader extends Vue {
 </script>
 
 <template lang="pug">
-  .container(v-if="isLoading" style="height: 100vh; position:fixed; z-index:9")
+  div(v-if="isLoading" style="height: 100vh; position:fixed; z-index:9;width:100%")
     img.mt-5#logo-preloader(
       src='/images/logo.svg',
       alt='Logo'
