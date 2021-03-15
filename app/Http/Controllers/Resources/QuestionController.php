@@ -11,6 +11,7 @@ use App\Util\Utils;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
 
+use phpDocumentor\Reflection\Types\Integer;
 use Response;
 
 class QuestionController extends Controller
@@ -40,7 +41,11 @@ class QuestionController extends Controller
         ]);
 
         $question = new Question($request->all());
-        $question->required = $request->get("required", 0);
+        if($question->required == "true"){
+            $question->required = 1;
+        } else{
+            $question->required = 0;
+        }
         $question->src = null;
 
         if ($request->has('src') and $request->file('src') !== null) {
@@ -73,7 +78,7 @@ class QuestionController extends Controller
         $question->title = $request->get("title", $question->title);
         $question->order = $request->get("order", $question->order);
         $question->input_type_id = $request->get("input_type_id", $question->input_type_id);
-        $question->required = $request->get("required", $question->required);
+        $question->required = (int)$request->get("required", $question->required);
 
         if ($request->has('src') and $request->file('src') !== null) {
             $image = $request->file('src');

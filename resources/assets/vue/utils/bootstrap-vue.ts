@@ -1,33 +1,34 @@
 import Vue from 'vue';
 
 import {
-  BootstrapVueIcons,
-  CardPlugin,
-  ButtonPlugin,
-  ModalPlugin,
-  FormPlugin,
-  ListGroupPlugin,
-  NavbarPlugin,
-  BContainer,
-  BTable,
-  BSpinner,
-  BRow,
-  BIcon,
-  BCol,
-  BBadge,
-  BLink,
-  BFormSelect,
-  BFormSelectOption,
-  BFormInput,
-  BPagination,
-  BFormGroup,
-  BFormTextarea,
-  BFormFile,
-  BFormCheckbox,
-  BFormRadioGroup,
-  BFormRadio,
-  BDropdown,
-  BDropdownItem,
+    BootstrapVueIcons,
+    CardPlugin,
+    ButtonPlugin,
+    ModalPlugin,
+    FormPlugin,
+    ListGroupPlugin,
+    NavbarPlugin,
+    CarouselPlugin,
+    BContainer,
+    BTable,
+    BSpinner,
+    BRow,
+    BIcon,
+    BCol,
+    BBadge,
+    BLink,
+    BFormSelect,
+    BFormSelectOption,
+    BFormInput,
+    BPagination,
+    BFormGroup,
+    BFormTextarea,
+    BFormFile,
+    BFormCheckbox,
+    BFormRadioGroup,
+    BFormRadio,
+    BDropdown,
+    BDropdownItem,
 } from 'bootstrap-vue';
 
 Vue.component('b-dropdown', BDropdown);
@@ -40,6 +41,7 @@ Vue.use(FormPlugin);
 Vue.use(ListGroupPlugin);
 Vue.use(NavbarPlugin);
 Vue.use(BootstrapVueIcons);
+Vue.use(CarouselPlugin);
 
 Vue.component('b-container', BContainer);
 Vue.component('b-table', BTable);

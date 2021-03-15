@@ -27,14 +27,20 @@ class SurveyController extends Controller
     public function getBySlug(Request $request, $slug)
     {
         $survey = Survey::where('slug', '=', $slug)->get();
-        $survey[0]['questions'] = Survey::find($survey[0]['id'])->questions;
+        $questions = Survey::find($survey[0]['id'])->questions;
+
+        foreach ($questions as $key => $question) {
+            $question['vModel'] = 'Selecciona una respuesta.';
+            $questions[$key] = $question;
+        }
+
+        $survey[0]['questions'] = $questions;
 
         foreach ($survey[0]['questions'] as $key => $question){
             $survey[0]['questions'][$key]['answers'] = Question::find($question['id'])->answers;
         }
 
         return response()->json($survey, 201);
-
     }
 
     /**

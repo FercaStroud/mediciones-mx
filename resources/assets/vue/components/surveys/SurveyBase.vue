@@ -1,6 +1,6 @@
 <script lang="ts">
-import { Component, Vue, } from 'vue-property-decorator';
-import { Action, State, namespace } from 'vuex-class';
+import {Component, Vue,} from 'vue-property-decorator';
+import {Action, State, namespace} from 'vuex-class';
 
 import dialog from '@/utils/dialog';
 import Preloader from "@/components/front/Preloader.vue";
@@ -18,9 +18,9 @@ const sStore = namespace('surveys');
         return {
           title: this.survey.title,
           meta: [
-            { charset: 'utf-8' },
-            { name: 'description', content: this.survey.description },
-            { name: 'copyright', content: 'Mediciones MX' },
+            {charset: 'utf-8'},
+            {name: 'description', content: this.survey.description},
+            {name: 'copyright', content: 'Mediciones MX'},
           ],
         }
       }
@@ -39,103 +39,152 @@ export default class SurveyBase extends Vue {
   }
 
   async getSurveyBySlug(slug: string): Promise<void> {
-    this.loadSurveyBySlug({ slug });
+    this.loadSurveyBySlug({slug});
+  }
+
+  prev(): void {
+    this.$refs.carousel.prev()
+  }
+  next(): void {
+    this.$refs.carousel.next()
   }
 }
 </script>
 
 <template lang="pug">
-div
-  Preloader(:is-loading="isLoading")
-  MessageFullPage(v-if="!survey.active && !isLoading" :message="$t('surveys.survey_disabled')")
-  pre {{survey}}}
+  div
+    Preloader(:is-loading="isLoading")
+    MessageFullPage(v-if="!survey.active && !isLoading" :message="$t('surveys.survey_disabled')")
+    //pre {{survey}}}
 
-  //swiper(
-  //  :slides-per-view="3"
-  //  :space-between="50"
-  //)
-  //  swiper-slide slide1
-  //  swiper-slide slide2
-  //  swiper-slide slide3
-  //.app-navigator
-  //  span.text-primary.app-title {{survey.title}}
-  //.container(v-if="!isLoading && survey.active" style="padding-top:110px;")
-  //  .mb-2()
-  //    p {{ survey.welcome_text }}
-  //    strong {{$t('surveys.description')}}
-  //    p {{ survey.description }}
-  //    hr
-  //
-  //  .questions
-  //    b-row
-  //      b-col(md='12' style='text-align: center' v-for='(question,key) in survey.questions' :key='key')
-  //        b-card()
-  //          b-card-title
-  //            strong(style='color:darkred') *
-  //            strong.text-primary {{question.title}}
-  //          img(
-  //            v-if="question.src !== null"
-  //            style="width:100%"
-  //            :src="'uploads/images/questions/' + question.src"
-  //          )
-  //          b-card-body
-  //            b-form-group
-  //              b-form-radio-group(
-  //                :placeholder="$t('surveys.select_a_cuestion')"
-  //                stacked
-  //                buttons
-  //                button-variant='outline-primary'
-  //              )
-  //                b-form-radio(
-  //                  style="width:100%"
-  //                  :value="$t('surveys.select_a_cuestion_required')"
-  //                )
-  //                  .full-width {{$t('surveys.select_a_cuestion_required')}}
-  //                b-form-radio(
-  //                  style="width:100%"
-  //                  v-for="(answer, key) in question.answers"
-  //                  :key="key"
-  //                  :value="answer.title"
-  //                )
-  //                  .full-width {{answer.title}}
-  //                  .full-width
-  //                    img(
-  //                      v-if="answer.src !== null"
-  //                      style="width:100%"
-  //                      :src="'uploads/images/answers/' + answer.src"
-  //                    )
-  //
-  //  .mt-2()
-  //    p {{ survey.end_text }}
-  //    div(style="height:80px")
-  //.app-bottom-navigator.p-2
-  //  b-button(
-  //    variant="primary"
-  //    block
-  //  ) Next
+    .app-navigator
+      span.text-primary.app-title {{survey.title}}
+
+    .survey-container(v-if="!isLoading && survey.active")
+      b-carousel(
+        ref="carousel"
+        no-wrap
+        no-touch
+        :indicators='false'
+        :interval="0"
+      )
+        b-carousel-slide
+          template(v-slot:img)
+            div(style="height:calc(100vh - 60px); background-color:transparent")
+          template(v-slot=caption)
+            .container
+              span.text-primary.question-title {{ survey.welcome_text }}
+          template(v-slot=text)
+            .container
+              p(style="color: black")  {{ survey.description }}
+
+
+        b-carousel-slide(
+          v-for="(question, key) in survey.questions"
+          :key="key"
+        )
+          template(v-slot=caption)
+            .container-fluid
+              b-row
+                b-col.mt-1(md="6" sm="12")
+                  img(
+                    style="width:100%"
+                    :src='"/uploads/images/questions/" + question.src'
+                    :alt="question.title"
+                  )
+                b-col.mt-1(md="6" sm="12")
+                  b-row
+                    .container
+                      strong.text-primary.question-title(
+                        style="width: 100%; text-align:center;"
+                      ) {{question.title}}
+                  b-row.mt-2
+                    b-col()
+                      b-form-group
+                        b-form-radio-group(
+                          placeholder="Selecciona una respuesta."
+                          v-model="question.vModel"
+                          buttons
+                          button-variant="outline-primary"
+                          size="lg"
+                        )
+                          b-form-radio(
+                           style=""
+                           value="Selecciona una respuesta."
+                          )
+                            div Selecciona una respuesta.
+                          b-form-radio(
+                            v-for="(answer, key) in question.answers"
+                            :key="key"
+                            :value="answer.title"
+                          )
+                            div {{answer.title}}
+                            div
+                              img(
+                                v-if="answer.src !== null"
+                                style="width:100%"
+                                :src="'uploads/images/answers/' + answer.src"
+                              )
+                  b-row(style="height:200px")
+          template(v-slot:img)
+            div(style="height:calc(100vh); background-color:transparent")
+
+    .app-bottom-navigator.p-2(v-if="!isLoading && survey.active")
+      b-button(
+        variant="primary"
+        block
+        @click="prev"
+      ) Anterior
+      b-button(
+        variant="primary"
+        block
+        @click="next"
+      ) Siguiente
 </template>
 
 <style scoped lang="scss">
-.app-bottom-navigator{
+.app-bottom-navigator {
   background-color: white;
   position: fixed;
-  z-index: 1;
+  z-index: 9999;
   width: 100%;
   bottom: 0;
 }
-.app-navigator{
+
+.app-navigator {
   background-color: white;
   position: fixed;
   margin-top: 49px;
   z-index: 1;
   width: 100%;
   height: 40px;
-  //box-shadow: 0px -5px 16px #888888
-
 }
-.app-title{
+
+.app-title {
   padding: 10px;
   font-size: 1.4em;
 
+}
+
+.survey-container {
+  top: 90px;
+}
+
+.question-title {
+  font-size: 1.2em;
+}
+
+</style>
+<style>
+.carousel-caption {
+  bottom: inherit !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 90px !important;
+  overflow: auto;
+  height: 100vh;
+}
+label{
+  width: 100%;
 }
 </style>
