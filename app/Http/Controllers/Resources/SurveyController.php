@@ -31,6 +31,7 @@ class SurveyController extends Controller
 
         foreach ($questions as $key => $question) {
             $question['vModel'] = 'Selecciona una respuesta.';
+            $question['required'] = (bool)$question['required'];
             $questions[$key] = $question;
         }
 

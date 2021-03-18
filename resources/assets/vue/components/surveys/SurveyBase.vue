@@ -95,6 +95,7 @@ export default class SurveyBase extends Vue {
                 b-col.mt-1(md="6" sm="12")
                   b-row
                     .container
+                      strong.text-danger(v-if="question.required") *
                       strong.text-primary.question-title(
                         style="width: 100%; text-align:center;"
                       ) {{question.title}}
@@ -107,6 +108,7 @@ export default class SurveyBase extends Vue {
                           buttons
                           button-variant="outline-primary"
                           size="lg"
+                          :required="question.required"
                         )
                           b-form-radio(
                            style=""
@@ -128,6 +130,17 @@ export default class SurveyBase extends Vue {
                   b-row(style="height:200px")
           template(v-slot:img)
             div(style="height:calc(100vh); background-color:transparent")
+
+
+        b-carousel-slide
+          template(v-slot:img)
+            div(style="height:calc(100vh - 60px); background-color:transparent")
+          template(v-slot=caption)
+            .container
+              span.text-primary.question-title {{$t('surveys.survey_end_text')}}
+          template(v-slot=text)
+            .container
+              p(style="color: black")  {{ survey.end_text }}
 
     .app-bottom-navigator.p-2(v-if="!isLoading && survey.active")
       b-button(
