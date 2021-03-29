@@ -24,12 +24,35 @@ class SurveyController extends Controller
             ->orderBy('id', 'ASC')->get();
     }
 
+    public function addQuestionsAnswers(Request $request)
+    {
+        $questions = $request->all();
+        $ok = true;
+
+        foreach ($questions as $question) {
+            $ok = \Illuminate\Support\Facades\DB::table('question_answer')->insert([
+                'answer' => $question['vModel'],
+                'question' => $question['title'],
+            ]);
+            if ($ok === false) {
+                return response()->json(['success' => false]);
+            }
+        }
+        return response()->json(['success' => true]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $slug
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getBySlug(Request $request, $slug)
     {
         $survey = Survey::where('slug', '=', $slug)->get();
         $questions = Survey::find($survey[0]['id'])->questions;
 
         foreach ($questions as $key => $question) {
+            $question['visible'] = false;
             $question['vModel'] = 'Selecciona una respuesta.';
             $question['required'] = (bool)$question['required'];
             $questions[$key] = $question;

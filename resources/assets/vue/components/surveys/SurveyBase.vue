@@ -1,5 +1,5 @@
 <script lang="ts">
-import {Component, Vue,} from 'vue-property-decorator';
+import {Component, Vue, Watch} from 'vue-property-decorator';
 import {Action, State, namespace} from 'vuex-class';
 
 import dialog from '@/utils/dialog';
@@ -22,7 +22,7 @@ const sStore = namespace('surveys');
             {name: 'description', content: this.survey.description},
             {name: 'copyright', content: 'Mediciones MX'},
           ],
-        }
+        };
       }
     }
 )
@@ -31,23 +31,139 @@ export default class SurveyBase extends Vue {
   @sStore.State isLoading;
   @sStore.State survey;
   @sStore.Action loadSurveyBySlug;
+  @sStore.Action sendPublicSurvey;
+
+  welcomeTextVisible: boolean;
+  endTextVisible: boolean;
+  startSurveyButtonVisible: boolean;
+  sendSurveyButtonVisible: boolean;
 
   mounted() {
     this.$nextTick(() => {
       this.getSurveyBySlug(this.$route.params.slug);
-    })
+      this.welcomeTextVisible = true;
+      this.endTextVisible = false;
+      this.startSurveyButtonVisible = true;
+      this.sendSurveyButtonVisible = false;
+
+      if(this.getCookie("successForm")){
+        this.welcomeTextVisible = false;
+        this.endTextVisible = true;
+        this.startSurveyButtonVisible = false;
+        this.sendSurveyButtonVisible = false;
+      }
+
+    });
+  }
+
+  setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+  }
+
+  getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  }
+
+  eraseCookie(name) {
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
 
   async getSurveyBySlug(slug: string): Promise<void> {
     this.loadSurveyBySlug({slug});
   }
 
-  prev(): void {
-    this.$refs.carousel.prev()
+  sortArrayByKey(array, key) {
+    return (array).sort(function (a, b) {
+      let x = a[key];
+      let y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
   }
-  next(): void {
-    this.$refs.carousel.next()
+
+  hideAllQuestions() {
+    (this.survey.questions).forEach(function (question, key) {
+      question.visible = false;
+    });
   }
+
+  startSurvey(): void {
+    this.survey.questions[0].visible = true;
+    this.startSurveyButtonVisible = false;
+  }
+
+  sendSurvey(): void {
+    this.sendPublicSurvey(this.survey.questions);
+    dialog('¡Gracias por participar!', false)
+    this.sendSurveyButtonVisible = false;
+    this.setCookie("successForm", true, 30);
+  }
+
+  forceVisibleQuestionById(questionId): void {
+    this.hideAllQuestions();
+    (this.survey.questions).forEach(function (question, key) {
+      if (question.id === questionId) {
+        question.visible = true;
+      }
+    });
+  }
+
+  showNextQuestion(currentQuestion): void {
+    let foo = false;
+    let endSurvey = true;
+    this.hideAllQuestions();
+
+    (this.survey.questions).forEach(function (question, key) {
+      if (foo) {
+        question.visible = true;
+        foo = false;
+      } else if (question === currentQuestion) {
+        foo = true;
+      }
+
+      if(question.visible === true){
+        endSurvey = false;
+      }
+
+    });
+
+    if (endSurvey) {
+      this.sendSurveyButtonVisible = true;
+      this.endTextVisible = true;
+      this.welcomeTextVisible = false;
+    }
+  }
+
+  processingAnswer(question): void {
+    let vm = this;
+    (question.answers).forEach(function (answer, key) {
+      if (question.vModel === answer.value) {
+        if (answer.end_survey === 1) {
+          vm.sendSurveyButtonVisible = true;
+          vm.endTextVisible = true;
+          vm.welcomeTextVisible = false;
+          vm.hideAllQuestions();
+        } else if (answer.force_question_id !== null) {
+          vm.forceVisibleQuestionById(answer.force_question_id);
+        } else {
+          vm.showNextQuestion(question);
+        }
+      }
+    });
+  }
+
 }
 </script>
 
@@ -55,115 +171,88 @@ export default class SurveyBase extends Vue {
   div
     Preloader(:is-loading="isLoading")
     MessageFullPage(v-if="!survey.active && !isLoading" :message="$t('surveys.survey_disabled')")
-    //pre {{survey}}}
 
     .app-navigator
       span.text-primary.app-title {{survey.title}}
 
-    .survey-container(v-if="!isLoading && survey.active")
-      b-carousel(
-        ref="carousel"
-        no-wrap
-        no-touch
-        :indicators='false'
-        :interval="0"
+    .survey-container.container-fluid(v-if="!isLoading && survey.active")
+      b-row(v-show="welcomeTextVisible")
+        b-col
+          p(style="color: black") {{ survey.welcome_text }}
+          p(style="color: black")  {{ survey.description }}
+      b-row
+        b-col
+          b-button(
+            variant="outline-primary"
+            block
+            @click="startSurvey"
+            v-show="startSurveyButtonVisible"
+          ) Comenzar encuesta
+      //QUESTIONS CONTAINER
+      b-row(
+        v-for="(question, key) in survey.questions"
+        :key="key"
+        v-show="question.visible"
       )
-        b-carousel-slide
-          template(v-slot:img)
-            div(style="height:calc(100vh - 60px); background-color:transparent")
-          template(v-slot=caption)
-            .container
-              span.text-primary.question-title {{ survey.welcome_text }}
-          template(v-slot=text)
-            .container
-              p(style="color: black")  {{ survey.description }}
-
-
-        b-carousel-slide(
-          v-for="(question, key) in survey.questions"
-          :key="key"
-        )
-          template(v-slot=caption)
-            .container-fluid
-              b-row
-                b-col.mt-1(md="6" sm="12")
-                  img(
-                    style="width:100%"
-                    :src='"/uploads/images/questions/" + question.src'
-                    :alt="question.title"
+        b-col.mt-1(md="6" sm="12")
+          img(
+            v-if="question.src !== null"
+            style="width:100%"
+            :src='"/uploads/images/questions/" + question.src'
+            :alt="question.title"
+          )
+        b-col.mt-1(md="6" sm="12")
+          b-row
+            b-col
+              strong.text-danger(v-if="question.required") *
+              strong.text-primary.question-title(
+                style="width: 100%; text-align:center;"
+              ) {{question.title}}
+            b-row.mt-2
+              b-col()
+                b-form-group.container
+                  b-form-radio-group(
+                    placeholder="Selecciona una respuesta."
+                    v-model="question.vModel"
+                    buttons
+                    button-variant="outline-primary"
+                    size="lg"
+                    :required="question.required"
+                    @change="$nextTick(function (){processingAnswer(question)})"
                   )
-                b-col.mt-1(md="6" sm="12")
-                  b-row
-                    .container
-                      strong.text-danger(v-if="question.required") *
-                      strong.text-primary.question-title(
-                        style="width: 100%; text-align:center;"
-                      ) {{question.title}}
-                  b-row.mt-2
-                    b-col()
-                      b-form-group
-                        b-form-radio-group(
-                          placeholder="Selecciona una respuesta."
-                          v-model="question.vModel"
-                          buttons
-                          button-variant="outline-primary"
-                          size="lg"
-                          :required="question.required"
+                    b-form-radio(
+                      style=""
+                      value="Selecciona una respuesta."
+                    )
+                      div Selecciona una respuesta.
+                    b-form-radio(
+                      v-for="(answer, key) in question.answers"
+                      :key="key"
+                      :value="answer.value"
+                    )
+                      div {{answer.title}}
+                      div
+                        img(
+                          v-if="answer.src !== null"
+                          style="width:100%"
+                          :src="'uploads/images/answers/' + answer.src"
                         )
-                          b-form-radio(
-                           style=""
-                           value="Selecciona una respuesta."
-                          )
-                            div Selecciona una respuesta.
-                          b-form-radio(
-                            v-for="(answer, key) in question.answers"
-                            :key="key"
-                            :value="answer.title"
-                          )
-                            div {{answer.title}}
-                            div
-                              img(
-                                v-if="answer.src !== null"
-                                style="width:100%"
-                                :src="'uploads/images/answers/' + answer.src"
-                              )
-                  b-row(style="height:200px")
-          template(v-slot:img)
-            div(style="height:calc(100vh); background-color:transparent")
 
+      b-row(v-show="endTextVisible")
+        b-col
+          p(style="color: black")  {{ survey.end_text }}
 
-        b-carousel-slide
-          template(v-slot:img)
-            div(style="height:calc(100vh - 60px); background-color:transparent")
-          template(v-slot=caption)
-            .container
-              span.text-primary.question-title {{$t('surveys.survey_end_text')}}
-          template(v-slot=text)
-            .container
-              p(style="color: black")  {{ survey.end_text }}
-
-    .app-bottom-navigator.p-2(v-if="!isLoading && survey.active")
-      b-button(
-        variant="primary"
-        block
-        @click="prev"
-      ) Anterior
-      b-button(
-        variant="primary"
-        block
-        @click="next"
-      ) Siguiente
+      b-row(v-show="sendSurveyButtonVisible")
+        b-col
+          b-button(
+            variant="outline-primary"
+            block
+            @click="sendSurvey"
+            v-show="sendSurveyButtonVisible"
+          ) Enviar encuesta
 </template>
 
 <style scoped lang="scss">
-.app-bottom-navigator {
-  background-color: white;
-  position: fixed;
-  z-index: 9999;
-  width: 100%;
-  bottom: 0;
-}
-
 .app-navigator {
   background-color: white;
   position: fixed;
@@ -176,11 +265,11 @@ export default class SurveyBase extends Vue {
 .app-title {
   padding: 10px;
   font-size: 1.4em;
-
 }
 
 .survey-container {
-  top: 90px;
+  top: 100px;
+  position: relative;
 }
 
 .question-title {
@@ -189,15 +278,7 @@ export default class SurveyBase extends Vue {
 
 </style>
 <style>
-.carousel-caption {
-  bottom: inherit !important;
-  left: 0 !important;
-  right: 0 !important;
-  top: 90px !important;
-  overflow: auto;
-  height: 100vh;
-}
-label{
+label {
   width: 100%;
 }
 </style>

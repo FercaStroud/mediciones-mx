@@ -1,6 +1,25 @@
 import axios from 'axios';
 import checkResponse from '@/utils/checkResponse';
 
+const sendPublicSurvey = async ({ commit }, payload) => {
+  commit('SET_LOADING', true);
+
+  try {
+    const response = await axios.post('survey/add/questions/answers', payload);
+    const checkErrors = checkResponse(response);
+
+    if (checkErrors) {
+      commit('SET_DIALOG_MESSAGE', checkErrors.message, { root: true });
+    } else {
+      commit('SET_DIALOG_MESSAGE', '¡Muchas gracias por participar!', { root: true });
+    }
+  } catch (e) {
+    commit('SET_DIALOG_MESSAGE', 'errors.generic_error', { root: true });
+  } finally {
+    commit('SET_LOADING', false);
+  }
+};
+
 const loadSurveyBySlug = async ({ commit }, payload) => {
   commit('SET_LOADING', true);
 
@@ -45,12 +64,12 @@ const addSurvey = async ({ commit }, payload) => {
     title: payload.title,
     slug: payload.slug,
     description: payload.description,
-    //anonymized: payload.anonymized,
+    // anonymized: payload.anonymized,
     active: payload.active,
     welcome_text: payload.welcome_text,
     end_text: payload.end_text,
-    //starts_at: payload.starts_at,
-    //end_at: payload.end_at,
+    // starts_at: payload.starts_at,
+    // end_at: payload.end_at,
   };
 
   commit('SET_MODAL_LOADING', true);
@@ -77,12 +96,12 @@ const editSurvey = async ({ commit }, payload) => {
     title: payload.title,
     slug: payload.slug,
     description: payload.description,
-    //anonymized: payload.anonymized,
+    // anonymized: payload.anonymized,
     active: payload.active,
     welcome_text: payload.welcome_text,
     end_text: payload.end_text,
-    //starts_at: payload.starts_at,
-    //end_at: payload.end_at,
+    // starts_at: payload.starts_at,
+    // end_at: payload.end_at,
   };
 
   commit('SET_MODAL_LOADING', true);
@@ -141,4 +160,5 @@ export default {
   editSurvey,
   deleteSurvey,
   setModalVisible,
+  sendPublicSurvey,
 };

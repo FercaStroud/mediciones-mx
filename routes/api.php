@@ -68,3 +68,4 @@ Route::any('messages/{type}/{id}', function ($type, $id) {
 });
 
 Route::get('survey/getBy/slug/{slug}', 'Resources\SurveyController@getBySlug');
+Route::post('survey/add/questions/answers', 'Resources\SurveyController@addQuestionsAnswers');

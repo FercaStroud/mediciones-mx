@@ -56,6 +56,7 @@ export default class App extends Vue {
 <template lang="pug">
 div(v-if="this.$route.name === 'survey'")
   div.app()
+    dialogs-wrapper
     router-view
 div(
   v-else,
@@ -69,7 +70,7 @@ div(
     base-auth(v-else)
     .languages
       b-button(
-        v-for='locale, i in locales',
+        v-for='(locale, i) in locales',
         :class='{ active: activeLocale === locale.name }',
         :key='i',
         :title='locale.title',
