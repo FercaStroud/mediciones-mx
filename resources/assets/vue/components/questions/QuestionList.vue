@@ -96,6 +96,8 @@ export default class QuestionList extends Vue {
         span {{$t("questions.input_type_text")}}
       template(v-slot:head(required)="data")
         span {{$t("questions.required")}}
+      template(v-slot:head(answers)="data")
+        span {{$t("questions.answers")}}
       template(v-slot:head(title)="data")
         span {{$t("questions.title")}}
       template(v-slot:head(actions)="data")
@@ -104,6 +106,7 @@ export default class QuestionList extends Vue {
         .text-nowrap {{$t("strings.created_at")}}
       template(v-slot:head(updated_at)="data")
         .text-nowrap {{$t("strings.updated_at")}}
+
 
       template(v-slot:cell(answers)="data")
         b-button.btn.table-btn.mr-2(

@@ -96,11 +96,34 @@ export default {
             "private_channel": "Private Channel",
             "new_private_message": "New Private Message",
             "public_channel": "Public Channel",
-            "new_public_message": "New Public Message"
+            "new_public_message": "New Public Message",
+            "update_table": "Update",
+            "show_details" : "Details"
         },
         "surveys": {
             "title": "Surveys",
-            "description": "Description"
+            "description": "Description",
+            "questions": "Questions",
+            "view_questions": "View",
+            "active_true" : "Active",
+            "active_false" : "Inactive",
+            "active" : "Status",
+            "title_survey" : "Title",
+        },
+        "questions":{
+            "order" : "Position",
+            "src": "Image",
+            "title" : "Title",
+            "required" : "Required",
+            "required_true": "Yes",
+            "required_false": "No",
+            "answers" : "Answers",
+            "view_answers" : "View",
+            "add_question": "Add Question",
+            "form_survey_id": "Survey ID",
+        },
+        "answers":{
+          "id": "Question ID"
         },
         "users": {
             "add_user": "Add user",
@@ -302,7 +325,9 @@ export default {
             "new_public_message": "Nuevo mensaje público",
             "created_at": "Fecha de Creación",
             "updated_at": "Fecha de Actualización",
-            "actions": "Acciones"
+            "actions": "Acciones",
+            "update_table": "Actualizar",
+            "show_details" : "Detalles"
         },
         "surveys": {
             "title": "Encuestas",
@@ -320,7 +345,34 @@ export default {
             "form_welcome_text": "Texto de bienvenida",
             "form_welcome_text_description": "form_welcome_text_description",
             "form_end_text": "Texto de despedida",
-            "form_end_text_description": "form_end_text_description"
+            "form_end_text_description": "form_end_text_description",
+            "questions" : "Preguntas",
+            "view_questions": "Ver",
+            "active_true" : "Activa",
+            "active_false" : "Inactiva",
+            "active" : "Estatus",
+            "title_survey" : "Título",
+        },
+        "questions":{
+            "order" : "Posición",
+            "src": "Imagen",
+            "title" : "Título",
+            "required" : "Obligatoria",
+            "required_true": "Sí",
+            "required_false": "No",
+            "answers" : "Respuestas",
+            "view_answers" : "Ver",
+            "add_question": "Agregar pregunta",
+            "form_survey_id": "ID de Encuesta",
+        },
+        "answers":{
+            "id": "ID de Pregunta",
+            "order": "Posición",
+            "src": "Imagen",
+            "title": "Título",
+            "value": "Valor",
+            "end_survey": "Cierre de Encuesta",
+
         },
         "users": {
             "add_user": "Agregar usuario",

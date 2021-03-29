@@ -34,7 +34,7 @@ export default class Questions extends Vue {
     this.setMenu(
         [
           {
-            text: 'questions.add_question',
+            text: this.$t('questions.add_question'),
             key: 1,
             handler: this.addQuestion
           },

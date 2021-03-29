@@ -84,8 +84,8 @@ export default class SurveyList extends Vue {
         div.text-center.text-danger
           b-spinner.align-middle
 
-      template(v-slot:head(name)="data")
-        span {{$t("surveys.title")}}
+      template(v-slot:head(title)="data")
+        span {{$t("surveys.title_survey")}}
       template(v-slot:head(slug)="data")
         span {{$t("surveys.slug")}}
       template(v-slot:head(description)="data")
