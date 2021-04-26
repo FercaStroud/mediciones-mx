@@ -124,8 +124,8 @@ export default class SurveyBase extends Vue {
     let foo = false;
     let endSurvey = true;
     this.hideAllQuestions();
-
     (this.survey.questions).forEach(function (question, key) {
+
       if (foo) {
         question.visible = true;
         foo = false;

@@ -7,7 +7,7 @@ import Icon from 'vue-awesome/components/Icon.vue';
 
 import ApolloClient from 'apollo-boost';
 import VueApollo from 'vue-apollo';
-import VueMeta from 'vue-meta'
+import VueMeta from 'vue-meta';
 
 import store from './store';
 
@@ -44,7 +44,7 @@ const apolloProvider = new VueApollo({
 
 Vue.use(VueApollo);
 Vue.use(ModalDialogs);
-Vue.use(VueMeta)
+Vue.use(VueMeta);
 
 Vue.use(VueAuth, {
   auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),

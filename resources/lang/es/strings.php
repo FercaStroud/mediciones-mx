@@ -45,5 +45,5 @@ return [
     'created_at' => 'Fecha de Creación',
     'updated_at' => 'Fecha de Actualización',
     'actions' => 'Acciones',
-
+    'preloader_is_loading' => 'Cargando datos',
 ];
