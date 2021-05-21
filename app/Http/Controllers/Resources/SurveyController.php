@@ -33,6 +33,7 @@ class SurveyController extends Controller
             $ok = \Illuminate\Support\Facades\DB::table('question_answer')->insert([
                 'answer' => $question['vModel'],
                 'question' => $question['title'],
+                'survey_id' => $question['survey_id'],
             ]);
             if ($ok === false) {
                 return response()->json(['success' => false]);
@@ -49,7 +50,7 @@ class SurveyController extends Controller
     public function getBySlug(Request $request, $slug)
     {
         $survey = Survey::where('slug', '=', $slug)->get();
-        $questions = Survey::find($survey[0]['id'])->questions;
+        $questions = Question::where('survey_id', '=', $survey[0]['id'])->orderBy('order', 'asc')->get();
 
         foreach ($questions as $key => $question) {
             $question['visible'] = false;
@@ -61,7 +62,14 @@ class SurveyController extends Controller
         $survey[0]['questions'] = $questions;
 
         foreach ($survey[0]['questions'] as $key => $question){
-            $survey[0]['questions'][$key]['answers'] = Question::find($question['id'])->answers;
+            //$answers = Question::where('question_id', '=', $question['id'])->orderBy('order', 'asc')->get();
+
+            $answers = Question::find($question['id'])->answers;
+            foreach ($answers as $index => $answer){
+                $answer['end_survey'] = (bool)$answer['end_survey'];
+                $answers[$index] = $answer;
+            }
+            $survey[0]['questions'][$key]['answers'] = $answers;
         }
 
         return response()->json($survey, 201);

@@ -75,8 +75,11 @@ export default class QuestionModal extends Vue {
           :select-size="4"
         )
           b-form-select-option(
-            :value="0"
-          ) select
+            :value="1"
+          ) Select
+          b-form-select-option(
+            :value="2"
+          ) Text Area
 
       b-form-group(
         :label='$t("questions.form_order")'

@@ -1,8 +1,45 @@
 export default {
     "en": {
+        "errors": {
+            "fatal_error": "A fatal error occurred, please contact us.",
+            "generic_error": "An error occurred, please try again.",
+            "unauthorized": "Unauthorized.",
+            "forbidden": "Forbidden."
+        },
+        "passwords": {
+            "password": "Passwords must be at least six characters and match the confirmation.",
+            "reset": "Your password has been reset!",
+            "sent": "We have e-mailed your password reset link!",
+            "token": "This password reset token is invalid.",
+            "user": "We can't find a user with that e-mail address."
+        },
+        "login": {
+            "confirm_password": "Confirm password",
+            "description": "Beard before they sold out neutra gluten-free. Godard wayfarers PBR&B literally. Blue bottle paleo lomo pickled deep v quinoa meh. Tousled master cleanse polaroid live-edge hell of.",
+            "forgot_password": "Forgot Your Password?",
+            "login": "Login",
+            "keep_connected": "Keep me connected",
+            "register": "Register",
+            "reset_password": "Reset password",
+            "send_reset_link": "Send the reset link",
+            "account_created": "Your account has been created successfully."
+        },
         "auth": {
             "failed": "These credentials do not match our records.",
             "throttle": "Too many login attempts. Please try again in {seconds} seconds."
+        },
+        "settings": {
+            "new_password": "New password",
+            "password_confirmation": "Password confirmation"
+        },
+        "pagination": {
+            "previous": "&laquo; Previous",
+            "next": "Next &raquo;"
+        },
+        "home": {
+            "logout": "Log out",
+            "manage": "MANAGE",
+            "welcome": "Welcome, {name}"
         },
         "buttons": {
             "add": "Add",
@@ -20,50 +57,12 @@ export default {
             "sending": "Sending",
             "update": "Update"
         },
-        "errors": {
-            "fatal_error": "A fatal error occurred, please contact us.",
-            "generic_error": "An error occurred, please try again.",
-            "unauthorized": "Unauthorized.",
-            "forbidden": "Forbidden."
-        },
-        "front": {
-            "deleted_successfully": "It has been deleted successfully.",
-            "password_changed_successfully": "Your password has been changed successfully.",
-            "passwords_not_match": "The password confirmation does not match.",
-            "settings": "Settings",
-            "delete_user_confirmation": "Are you sure you want want to delete this user?",
-            "language": "English"
-        },
-        "home": {
-            "logout": "Log out",
-            "manage": "MANAGE",
-            "welcome": "Welcome, {name}"
-        },
-        "login": {
-            "confirm_password": "Confirm password",
-            "description": "Beard before they sold out neutra gluten-free. Godard wayfarers PBR&B literally. Blue bottle paleo lomo pickled deep v quinoa meh. Tousled master cleanse polaroid live-edge hell of.",
-            "forgot_password": "Forgot Your Password?",
-            "login": "Login",
-            "keep_connected": "Keep me connected",
-            "register": "Register",
-            "reset_password": "Reset password",
-            "send_reset_link": "Send the reset link",
-            "account_created": "Your account has been created successfully."
-        },
-        "pagination": {
-            "previous": "&laquo; Previous",
-            "next": "Next &raquo;"
-        },
-        "passwords": {
-            "password": "Passwords must be at least six characters and match the confirmation.",
-            "reset": "Your password has been reset!",
-            "sent": "We have e-mailed your password reset link!",
-            "token": "This password reset token is invalid.",
-            "user": "We can't find a user with that e-mail address."
-        },
-        "settings": {
-            "new_password": "New password",
-            "password_confirmation": "Password confirmation"
+        "users": {
+            "add_user": "Add user",
+            "edit_user": "Edit user",
+            "no_users": "There are no registered users.",
+            "user_type": "User type",
+            "search": "Users Search"
         },
         "strings": {
             "admin": "Administrator",
@@ -101,13 +100,6 @@ export default {
         "surveys": {
             "title": "Surveys",
             "description": "Description"
-        },
-        "users": {
-            "add_user": "Add user",
-            "edit_user": "Edit user",
-            "no_users": "There are no registered users.",
-            "user_type": "User type",
-            "search": "Users Search"
         },
         "validation": {
             "message": "The given data was invalid.",
@@ -195,9 +187,40 @@ export default {
                 "password": "password",
                 "type_id": "user type"
             }
+        },
+        "front": {
+            "deleted_successfully": "It has been deleted successfully.",
+            "password_changed_successfully": "Your password has been changed successfully.",
+            "passwords_not_match": "The password confirmation does not match.",
+            "settings": "Settings",
+            "delete_user_confirmation": "Are you sure you want want to delete this user?",
+            "language": "English"
         }
     },
     "es": {
+        "errors": {
+            "fatal_error": "Se produjo un error fatal, póngase en contacto con nosotros.",
+            "generic_error": "Ha ocurrido un error. Por favor intente de nuevo.",
+            "unauthorized": "No autorizado."
+        },
+        "passwords": {
+            "password": "La contraseña debe tener al menos seis caracteres y coincidir con la de su confirmación.",
+            "reset": "Su contraseña se ha reiniciado!",
+            "sent": "Le hemos enviado el enlace para el reinicio de la contraseña!",
+            "token": "El código del reinicio de la contraseña es incorrecto.",
+            "user": "El Usuario con este Correo no se ha encontrado."
+        },
+        "login": {
+            "confirm_password": "Confirmar contraseña",
+            "description": "Blog echo park intelligentsia shaman flannel letterpress. Lumbersexual waistcoat pork belly four loko swag semiotics af disrupt squid. ",
+            "forgot_password": "¿Olvidaste tu contraseña?",
+            "login": "Iniciar sesión",
+            "keep_connected": "Mantenme conectado",
+            "register": "Registro",
+            "reset_password": "Restablecer la contraseña",
+            "send_reset_link": "Enviar el enlace de reinicio",
+            "account_created": "Su cuenta ha sido creada con éxito."
+        },
         "auth": {
             "failed": "Las credenciales no se han encontrado.",
             "general_error": "No tiene suficientes permisos..",
@@ -207,6 +230,19 @@ export default {
             },
             "throttle": "Demasiados intentos de inicio de sesión. Vuelva a intentarlo en {seconds} segundos.",
             "unknown": "Se ha producido un error desconocido."
+        },
+        "settings": {
+            "new_password": "Nueva contraseña",
+            "password_confirmation": "confirmación de contraseña"
+        },
+        "pagination": {
+            "previous": "&laquo; Anterior",
+            "next": "Siguiente &raquo;"
+        },
+        "home": {
+            "logout": "Cerrar sesión",
+            "manage": "GESTIONAR",
+            "welcome": "Bienvenido, {name}"
         },
         "buttons": {
             "add": "Añadir",
@@ -224,49 +260,12 @@ export default {
             "sending": "Enviando",
             "update": "Actualizar"
         },
-        "errors": {
-            "fatal_error": "Se produjo un error fatal, póngase en contacto con nosotros.",
-            "generic_error": "Ha ocurrido un error. Por favor intente de nuevo.",
-            "unauthorized": "No autorizado."
-        },
-        "front": {
-            "deleted_successfully": "Ha sido eliminado con éxito.",
-            "password_changed_successfully": "Tu contraseña ha sido cambiada exitosamente.",
-            "passwords_not_match": "La confirmación de contraseña no coincide.",
-            "settings": "Configuraciones",
-            "delete_user_confirmation": "¿Seguro que quieres eliminar a este usuario?",
-            "language": "Español"
-        },
-        "home": {
-            "logout": "Cerrar sesión",
-            "manage": "GESTIONAR",
-            "welcome": "Bienvenido, {name}"
-        },
-        "login": {
-            "confirm_password": "Confirmar contraseña",
-            "description": "Blog echo park intelligentsia shaman flannel letterpress. Lumbersexual waistcoat pork belly four loko swag semiotics af disrupt squid. ",
-            "forgot_password": "¿Olvidaste tu contraseña?",
-            "login": "Iniciar sesión",
-            "keep_connected": "Mantenme conectado",
-            "register": "Registro",
-            "reset_password": "Restablecer la contraseña",
-            "send_reset_link": "Enviar el enlace de reinicio",
-            "account_created": "Su cuenta ha sido creada con éxito."
-        },
-        "pagination": {
-            "previous": "&laquo; Anterior",
-            "next": "Siguiente &raquo;"
-        },
-        "passwords": {
-            "password": "La contraseña debe tener al menos seis caracteres y coincidir con la de su confirmación.",
-            "reset": "Su contraseña se ha reiniciado!",
-            "sent": "Le hemos enviado el enlace para el reinicio de la contraseña!",
-            "token": "El código del reinicio de la contraseña es incorrecto.",
-            "user": "El Usuario con este Correo no se ha encontrado."
-        },
-        "settings": {
-            "new_password": "Nueva contraseña",
-            "password_confirmation": "confirmación de contraseña"
+        "users": {
+            "add_user": "Agregar usuario",
+            "edit_user": "Editar usuario",
+            "no_users": "No hay usuarios registrados",
+            "user_type": "Tipo de usuario",
+            "search": "Búsqueda de usuarios"
         },
         "strings": {
             "admin": "Administrador",
@@ -322,13 +321,6 @@ export default {
             "form_welcome_text_description": "form_welcome_text_description",
             "form_end_text": "Texto de despedida",
             "form_end_text_description": "form_end_text_description"
-        },
-        "users": {
-            "add_user": "Agregar usuario",
-            "edit_user": "Editar usuario",
-            "no_users": "No hay usuarios registrados",
-            "user_type": "Tipo de usuario",
-            "search": "Búsqueda de usuarios"
         },
         "validation": {
             "accepted": "El campo {attribute} debe ser aceptado.",
@@ -439,6 +431,14 @@ export default {
                 "password": "contraseña",
                 "type_id": "tipo usuario"
             }
+        },
+        "front": {
+            "deleted_successfully": "Ha sido eliminado con éxito.",
+            "password_changed_successfully": "Tu contraseña ha sido cambiada exitosamente.",
+            "passwords_not_match": "La confirmación de contraseña no coincide.",
+            "settings": "Configuraciones",
+            "delete_user_confirmation": "¿Seguro que quieres eliminar a este usuario?",
+            "language": "Español"
         }
     }
 }
