@@ -1,17 +1,17 @@
 import axios from 'axios';
 import checkResponse from '@/utils/checkResponse';
 
-const loadQuestions = async ({ commit }, payload) => {
+const loadContacts = async ({ commit }, payload) => {
   commit('SET_LOADING', true);
 
   try {
-    const response = await axios.get(`questions?survey_id=${payload.survey_id}`);
+    const response = await axios.get('contacts');
     const checkErrors = checkResponse(response);
 
     if (checkErrors) {
       commit('SET_DIALOG_MESSAGE', checkErrors.message, { root: true });
     } else {
-      commit('SET_QUESTIONS', response);
+      commit('SET_CONTACTS', response);
     }
   } catch (e) {
     commit('SET_DIALOG_MESSAGE', 'errors.generic_error', { root: true });
@@ -20,29 +20,24 @@ const loadQuestions = async ({ commit }, payload) => {
   }
 };
 
-const addQuestion = async ({ commit }, payload) => {
+const addContact = async ({ commit }, payload) => {
 
-  const formData = new FormData();
-  formData.append('input_type_id', payload.input_type_id);
-  formData.append('survey_id', payload.survey_id);
-  formData.append('title', payload.title);
-  formData.append('required', payload.required);
-
-  if (payload.src !== 'undefined' && payload.src !== undefined) {
-    formData.append('src', payload.src);
-  }
-  formData.append('order', payload.order);
+  const contacts = {
+    firstName: payload.firstName,
+    lastName: payload.lastName,
+    secondLastName: payload.secondLastName,
+  };
 
   commit('SET_MODAL_LOADING', true);
 
   try {
-    const response = await axios.post('questions', formData);
+    const response = await axios.post('contacts', contacts);
     const checkErrors = checkResponse(response);
 
     if (checkErrors) {
       commit('SET_DIALOG_MESSAGE', checkErrors.message, { root: true });
     } else {
-      commit('ADD_QUESTION', response.data);
+      commit('ADD_CONTACT', response.data);
       commit('SET_MODAL_VISIBLE', false);
     }
   } catch {
@@ -52,25 +47,23 @@ const addQuestion = async ({ commit }, payload) => {
   }
 };
 
-const editQuestion = async ({ commit }, payload) => {
-  const formData = new FormData();
-  formData.append('input_type_id', payload.input_type_id);
-  formData.append('survey_id', payload.survey_id);
-  formData.append('title', payload.title);
-  formData.append('src', payload.src);
-  formData.append('order', payload.order);
-  formData.append('required', payload.required);
+const editContact = async ({ commit }, payload) => {
+  const contacts = {
+    firstName: payload.firstName,
+    lastName: payload.lastName,
+    secondLastName: payload.secondLastName,
+  };
 
   commit('SET_MODAL_LOADING', true);
 
   try {
-    const response = await axios.put(`questions/${payload.id}`, formData);
+    const response = await axios.put(`contacts/${payload.id}`, contacts);
     const checkErrors = checkResponse(response);
 
     if (checkErrors) {
       commit('SET_DIALOG_MESSAGE', checkErrors.message, { root: true });
     } else {
-      commit('UPDATE_QUESTION', response.data);
+      commit('UPDATE_CONTACT', response.data);
       commit('SET_MODAL_VISIBLE', false);
     }
   } catch {
@@ -80,15 +73,15 @@ const editQuestion = async ({ commit }, payload) => {
   }
 };
 
-const deleteQuestion = async ({ commit }, payload) => {
+const deleteContact = async ({ commit }, payload) => {
   try {
-    const response = await axios.delete(`questions/${payload.id}`);
+    const response = await axios.delete(`contact/${payload.id}`);
     const checkErrors = checkResponse(response);
 
     if (checkErrors) {
       commit('SET_DIALOG_MESSAGE', checkErrors.message, { root: true });
     } else {
-      commit('DELETE_QUESTION', payload);
+      commit('DELETE_CONTACT', payload);
       commit('SET_DIALOG_MESSAGE', 'front.deleted_successfully', { root: true });
     }
   } catch {
@@ -111,9 +104,9 @@ const setForm = ({ commit }, payload) => {
 export default {
   setForm,
   setModalAdd,
-  loadQuestions,
-  addQuestion,
-  editQuestion,
-  deleteQuestion,
+  loadContacts,
+  addContact,
+  editContact,
+  deleteContact,
   setModalVisible,
 };

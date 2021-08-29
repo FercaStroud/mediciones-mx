@@ -224,6 +224,18 @@ export default {
             "sending": "Enviando",
             "update": "Actualizar"
         },
+        "contacts": {
+            "title": "Contactos",
+            "add_contact": "Añadir Contacto",
+            "edit_contact": "Editar",
+            "delete_contact": "Eliminar",
+            "form_first_name": "Nombre(s)",
+            "form_last_name": "Apellido Paterno",
+            "form_second_last_name": "Apellido Materno",
+            "form_first_name_description": "Nombre(s)",
+            "form_last_name_description": "Apellido Paterno",
+            "form_second_last_name_description": "Apellido Materno"
+        },
         "errors": {
             "fatal_error": "Se produjo un error fatal, póngase en contacto con nosotros.",
             "generic_error": "Ha ocurrido un error. Por favor intente de nuevo.",
@@ -235,6 +247,7 @@ export default {
             "passwords_not_match": "La confirmación de contraseña no coincide.",
             "settings": "Configuraciones",
             "delete_user_confirmation": "¿Seguro que quieres eliminar a este usuario?",
+            "delete_contact_confirmation": "¿Seguro que quieres eliminar a este Contacto?",
             "language": "Español"
         },
         "home": {
@@ -264,6 +277,29 @@ export default {
             "token": "El código del reinicio de la contraseña es incorrecto.",
             "user": "El Usuario con este Correo no se ha encontrado."
         },
+        "questions": {
+            "title": "Pregunta",
+            "description": "Descripción",
+            "required": "Obligatoria / Opcional",
+            "required_true": "Obligatoria",
+            "required_false": "Opcional",
+            "add_question": "Añadir Pregunta",
+            "order": "Orden",
+            "src": "Nombre del Archivo (Imagen)",
+            "answers": "Respuestas",
+            "view_answers": "Ver Respuestas",
+            "form_survey_id": "Identificador",
+            "form_survey_id_description": "form_survey_id_description",
+            "form_title": "Título de la pregunta",
+            "form_title_description": "form_title_description",
+            "form_input_type_id": "¿Tipo de Pregunta?",
+            "form_input_type_id_description": "form_input_type_id_description",
+            "form_order": "Órden de la Pregunta",
+            "form_required": "Pregunta Obligaroria",
+            "form_required_description": "form_required_description",
+            "form_image": "Imagen",
+            "form_image_description": "form_image_description"
+        },
         "settings": {
             "new_password": "Nueva contraseña",
             "password_confirmation": "confirmación de contraseña"
@@ -283,6 +319,10 @@ export default {
             "title": "Título",
             "user": "Usuario",
             "welcome": "Bienvenido",
+            "update_table": "Actualizar Tabla",
+            "show_details": "Ver Detalles",
+            "browse": "Buscar",
+            "choose_img": "Elija una imagen",
             "example": "Ejemplo",
             "home": "Home",
             "messages": "Mensajes",
@@ -311,7 +351,13 @@ export default {
             "description": "Descripción",
             "welcome_text": "Texto de Bienvenida",
             "end_text": "Texto de Despedida",
+            "questions": "Preguntas",
+            "view_questions": "Ver Preguntas",
+            "active": "Activa / Inactiva",
+            "active_true": "Activa",
+            "active_false": "Inactiva",
             "add_survey": "Añadir Encuesta",
+            "title_survey": "Título de la encuesta",
             "form_title": "Nombre de la encuesta",
             "form_title_description": "form_title_description",
             "form_slug": "URL de la encuesta",

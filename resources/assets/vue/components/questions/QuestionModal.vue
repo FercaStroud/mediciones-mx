@@ -43,7 +43,7 @@ export default class QuestionModal extends Vue {
     b-form
       b-form-group(
         :label='$t("questions.form_survey_id")'
-        :description='$t("questions.form_survey_id")'
+        :description='$t("questions.form_survey_id_description")'
         label-for='survey_id',
       )
         b-form-input#survey_id(
@@ -55,7 +55,7 @@ export default class QuestionModal extends Vue {
 
       b-form-group(
         :label='$t("questions.form_title")'
-        :description='$t("questions.form_title")'
+        :description='$t("questions.form_title_description")'
         label-for='title',
       )
         b-form-input#title(
@@ -75,12 +75,15 @@ export default class QuestionModal extends Vue {
           :select-size="4"
         )
           b-form-select-option(
-            :value="0"
-          ) select
+            :value="1"
+          ) De seleción
+          b-form-select-option(
+            :value="2"
+          ) Abierta
 
       b-form-group(
         :label='$t("questions.form_order")'
-        :description='$t("questions.form_order")'
+        :description='$t("questions.form_order_description")'
         label-for='order',
       )
         b-form-input#order(

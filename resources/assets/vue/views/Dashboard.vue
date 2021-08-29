@@ -21,15 +21,21 @@ export default class Home extends Vue {
   mounted() {
     this.setBackUrl('/');
     this.setMenu([
-                   {
-                     text: 'surveys.title',
-                     key: 1,
-                     handler: () => {
-                       this.$router.push({path: '/surveys'})
-                     },
-                   },
-
-                 ]);
+        {
+          text: 'contacts.title',
+          key: 1,
+          handler: () => {
+            this.$router.push({path: '/contacts'})
+          },
+        },
+        {
+          text: 'surveys.title',
+          key: 2,
+          handler: () => {
+            this.$router.push({path: '/surveys'})
+          },
+        },
+    ]);
   }
 
 

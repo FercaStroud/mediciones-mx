@@ -16,6 +16,10 @@ return [
     'title' => 'Título',
     'user' => 'Usuario',
     'welcome' => 'Bienvenido',
+    'update_table' => 'Actualizar Tabla',
+    'show_details' => 'Ver Detalles',
+    'browse' => 'Buscar',
+    'choose_img' => 'Elija una imagen',
 
     // Pages
     'example' => 'Ejemplo',

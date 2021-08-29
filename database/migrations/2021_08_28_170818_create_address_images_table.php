@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInputTypesTable extends Migration
+class CreateAddressImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateInputTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('input_types', function (Blueprint $table) {
+        Schema::create('address_images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 20);
+            $table->string('name',35);
+            $table->longText('image');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +28,6 @@ class CreateInputTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('input_types');
+        Schema::dropIfExists('address_images');
     }
 }

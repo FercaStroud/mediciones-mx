@@ -14,6 +14,7 @@ const Surveys = () => import('../views/Surveys.vue');
 const Dashboard = () => import('../views/Dashboard.vue');
 const Questions = () => import('../views/Questions.vue');
 const Answers = () => import('../views/Answers.vue');
+const Contacts = () => import('../views/Contacts.vue');
 const PublicSurvey = () => import('../views/PublicSurvey.vue');
 
 import userTypes from '@/utils/userTypes';
@@ -63,12 +64,21 @@ const router = new Router({
       },
     },
     {
+      path: '/contacts',
+      name: 'contacts',
+      component: Contacts,
+      meta: {
+        title: Vue.i18n.translate('contacts.meta_title', null),
+        auth: true,
+      },
+    },
+    {
       path: '/questions/survey/:survey_id',
       name: 'questions',
       component: Questions,
       meta: {
         title: Vue.i18n.translate('questions.meta_title', null),
-        auth: true
+        auth: true,
       },
     },
     {
@@ -77,7 +87,7 @@ const router = new Router({
       component: Answers,
       meta: {
         title: Vue.i18n.translate('answers.meta_title', null),
-        auth: true
+        auth: true,
       },
     },
     /*{

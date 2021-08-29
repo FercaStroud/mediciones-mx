@@ -2,14 +2,14 @@
 import {Component, Vue, Emit} from 'vue-property-decorator';
 import {Action, namespace} from 'vuex-class';
 import SurveyList from '@/components/surveys/SurveyList.vue';
-import surveyModal from '@/components/surveys/SurveyModal.vue';
+import SurveyModal from '@/components/surveys/SurveyModal.vue';
 
 const sStore = namespace('surveys');
 
 @Component(
     {
       components: {
-        surveyModal,
+        SurveyModal,
         SurveyList
       }
     }

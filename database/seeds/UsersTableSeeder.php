@@ -26,12 +26,6 @@ class UsersTableSeeder extends Seeder
             'type_id' => 2,
         ]);
 
-        User::create([
-            'name' => 'Adolfo R. Silva',
-            'email' => 'adolfo@enmedioasociados.com',
-            'password' => bcrypt('adolfo'),
-            'type_id' => 2,
-        ]);
 
     }
 }

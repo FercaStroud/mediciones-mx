@@ -8,6 +8,7 @@ return [
     'settings' => 'Configuraciones',
 
     'delete_user_confirmation' => '¿Seguro que quieres eliminar a este usuario?',
+    'delete_contact_confirmation' => '¿Seguro que quieres eliminar a este Contacto?',
     'language' => 'Español',
 
 ];

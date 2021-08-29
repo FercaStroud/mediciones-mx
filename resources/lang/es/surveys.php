@@ -6,9 +6,14 @@ return [
     'description' => 'Descripción',
     'welcome_text' => 'Texto de Bienvenida',
     'end_text' => 'Texto de Despedida',
+    'questions' => 'Preguntas',
+    'view_questions' => 'Ver Preguntas',
+    'active' => 'Activa / Inactiva',
+    'active_true' => 'Activa',
+    'active_false' => 'Inactiva',
 
     'add_survey' => 'Añadir Encuesta',
-
+    'title_survey'=> 'Título de la encuesta',
 
     'form_title' => 'Nombre de la encuesta',
     'form_title_description' => 'form_title_description',
