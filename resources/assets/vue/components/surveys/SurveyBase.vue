@@ -46,24 +46,24 @@ export default class SurveyBase extends Vue {
       this.startSurveyButtonVisible = true;
       this.sendSurveyButtonVisible = false;
 
-      if(this.getCookie("successForm")){
+      /*if(this.getCookie("successForm")){
         this.welcomeTextVisible = false;
         this.endTextVisible = true;
         this.startSurveyButtonVisible = false;
         this.sendSurveyButtonVisible = false;
-      }
+      }*/
 
     });
   }
 
   setCookie(name,value,days) {
-    var expires = "";
+    /*var expires = "";
     if (days) {
       var date = new Date();
       date.setTime(date.getTime() + (days*24*60*60*1000));
       expires = "; expires=" + date.toUTCString();
     }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";*/
   }
 
   getCookie(name) {
@@ -150,7 +150,7 @@ export default class SurveyBase extends Vue {
     let vm = this;
     (question.answers).forEach(function (answer, key) {
       if (question.vModel === answer.value) {
-        if (answer.end_survey === 1) {
+        if (answer.end_survey) {
           vm.sendSurveyButtonVisible = true;
           vm.endTextVisible = true;
           vm.welcomeTextVisible = false;
@@ -210,7 +210,7 @@ export default class SurveyBase extends Vue {
               ) {{question.title}}
             b-row.mt-2
               b-col()
-                b-form-group.container
+                b-form-group.container(v-if='question.input_type_id === 1 || question.input_type_id === "1"')
                   b-form-radio-group(
                     placeholder="Selecciona una respuesta."
                     v-model="question.vModel"
@@ -237,6 +237,20 @@ export default class SurveyBase extends Vue {
                           style="width:100%"
                           :src="'uploads/images/answers/' + answer.src"
                         )
+                b-form-group.container(v-if='question.input_type_id === 2 || question.input_type_id === "2"')
+                  b-form-group
+                    b-form-textarea(
+                      rows="4"
+                      placeholder="Escribe tu respuesta."
+                      v-model="question.vModel"
+                      :required="question.required"
+                    )
+                  b-button(
+                    variant="outline-primary"
+                    block
+                    @click="showNextQuestion(question)"
+                  ) Siguiente
+
 
       b-row(v-show="endTextVisible")
         b-col

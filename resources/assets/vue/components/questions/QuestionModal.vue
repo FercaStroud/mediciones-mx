@@ -119,7 +119,4 @@ export default class QuestionModal extends Vue {
         :drop-placeholder='$t("strings.drop_img")'
       )
 
-
-
-
 </template>
