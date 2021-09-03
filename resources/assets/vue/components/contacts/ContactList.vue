@@ -7,9 +7,9 @@ import dialog from '@/utils/dialog';
 const cStore = namespace('contacts');
 
 @Component(
-    {
-      components: {},
-    }
+  {
+    components: {},
+  }
 )
 
 export default class ContactList extends Vue {
@@ -130,7 +130,7 @@ export default class ContactList extends Vue {
         )
           b-icon(
             icon="pencil"
-            style="color: #fff;"
+            style="color: #fff; margin-right: 5px"
           )
           | {{$t('strings.edit')}}
 
@@ -141,72 +141,96 @@ export default class ContactList extends Vue {
         )
           b-icon(
             icon="trash-fill"
-            style="color: #fff"
+            style="color: #fff; margin-right: 5px"
           )
           | {{$t('strings.delete')}}
 
       template(#row-details='data')
-        b-row
-          b-col(md="4")
-            b-card
-              b-card-title {{$t("contacts.table_head_total_addresses")}}
-              b-card-text
-                b-list-group()
-                  b-list-group-item.flex-column.align-items-start(
-                    v-for="(address, key) in data.item.addresses" :key="key"
-                    :class="(address.primary === 1) ? 'active' : ''"
+        b-container(fluid)
+          b-row
+            b-col(md="4")
+              b-card
+                b-card-title.d-flex.justify-content-between {{$t("contacts.table_head_total_addresses")}}
+                  b-button.btn.table-btn.mb-2(
+                    size="sm"
+                    style="margin-right: 5px"
+                    @click="addAddressToContact(data.item)"
+                    :title="$t('strings.add')"
                   )
-                    .d-flex.justify-content-between
-                      strong.mb-1 {{address.street_name}} {{ ', #' + address.street_number}} {{ ', INT ' + address.street_number_int}}
-                      small {{address.country}}, {{address.state}}, {{address.city}}
+                    b-icon(
+                      icon="person-plus"
+                      style="color: #fff; margin-right: 5px"
+                    )
+                    | {{$t('strings.add')}}
+                b-card-text
+                  b-list-group()
+                    b-list-group-item.flex-column.align-items-start(
+                      v-for="(address, key) in data.item.addresses" :key="key"
+                      :class="(address.primary === 1) ? 'active' : ''"
+                    )
+                      .d-flex.justify-content-between
+                        strong.mb-1 {{address.street_name}} {{ ', #' + address.street_number}} {{ ', INT ' + address.street_number_int}}
+                        small {{address.country}}, {{address.state}}, {{address.city}}
 
-                    p
-                      strong {{$t("contacts.other_details")}}
-                      br/
-                      | {{address.other_details}}
+                      p
+                        strong {{$t("contacts.other_details")}}
+                        br/
+                        | {{address.other_details}}
 
-                    .mb-1 {{$t("contacts.zipcode") + ' :'}} {{address.zipcode}}
-                    hr
-                    .mt-3
-                      b-button.btn.table-btn.mb-2(
-                        size="sm"
-                        style="margin-right: 5px"
-                        @click="handleEditAddress(data.item)"
-                        :title="$t('strings.edit')"
-                      )
-                        b-icon(
-                          icon="pencil"
-                          style="color: #fff; margin-right: 5px"
+                      .mb-1 {{$t("contacts.zipcode") + ' :'}} {{address.zipcode}}
+                      hr
+                      .mt-3
+                        b-button.btn.table-btn.mb-2(
+                          size="sm"
+                          style="margin-right: 5px"
+                          @click="handleEditAddress(data.item)"
+                          :title="$t('strings.edit')"
                         )
-                        | {{$t('strings.edit')}}
-                      b-button.btn-danger.table-btn.mb-2(
-                        :title="$t('strings.delete')"
-                        @click="deleteAddressConfirm(data.item)"
-                        size="sm"
-                      )
-                        b-icon(
-                          icon="trash-fill"
-                          style="color: #fff; margin-right: 5px"
+                          b-icon(
+                            icon="pencil"
+                            style="color: #fff; margin-right: 5px"
+                          )
+                          | {{$t('strings.edit')}}
+                        b-button.btn-danger.table-btn.mb-2(
+                          :title="$t('strings.delete')"
+                          @click="deleteAddressConfirm(data.item)"
+                          size="sm"
                         )
-                        | {{$t('strings.delete')}}
+                          b-icon(
+                            icon="trash-fill"
+                            style="color: #fff; margin-right: 5px"
+                          )
+                          | {{$t('strings.delete')}}
 
-          b-col(md="4")
-            b-card
-              b-card-title {{$t("contacts.table_head_total_emails")}}
-              b-card-text
-                b-list-group()
-                  b-list-group-item.flex-column.align-items-start(
-                    v-for="(email, key) in data.item.emails" :key="key"
-                    :class="(email.primary === 1) ? 'active' : ''"
+            b-col(md="4")
+              b-card
+                b-card-title.d-flex.justify-content-between {{$t("contacts.table_head_total_emails")}}
+                  b-button.btn.table-btn(
+                    size="sm"
+                    style="margin-right: 5px"
+                    @click="addEmailToContact(data.item)"
+                    :title="$t('strings.add')"
                   )
-                    .d-flex.justify-content-between
-                      strong.mb-1 {{email.email}}
-                      small
+                    b-icon(
+                      icon="person-plus"
+                      style="color: #fff; margin-right: 5px"
+                    )
+                    | {{$t('strings.add')}}
+                b-card-text
+                  b-list-group()
+                    b-list-group-item.flex-column.align-items-start(
+                      v-for="(email, key) in data.item.emails" :key="key"
+                      :class="(email.primary === 1) ? 'active' : ''"
+                    )
+                      .d-flex.justify-content-between
+                        strong.mb-1 {{email.email}}
+                      hr
+                      .mt-3
                         b-button.btn.table-btn(
-                        size="sm"
-                        style="margin-right: 5px"
-                        @click="handleEditEmail(data.item)"
-                        :title="$t('strings.edit')"
+                          size="sm"
+                          style="margin-right: 5px"
+                          @click="handleEditEmail(data.item)"
+                          :title="$t('strings.edit')"
                         )
                           b-icon(
                             icon="pencil"
@@ -224,20 +248,30 @@ export default class ContactList extends Vue {
                           )
                           | {{$t('strings.delete')}}
 
-          b-col(md="4")
-            b-card
-              b-card-title {{$t("contacts.table_head_total_phones")}}
-              b-card-text
-                b-list-group()
-                  b-list-group-item.flex-column.align-items-start(
-                    v-for="(phone, key) in data.item.phones" :key="key"
-                    :class="(phone.primary === 1) ? 'active' : ''"
+            b-col(md="4")
+              b-card
+                b-card-title.d-flex.justify-content-between {{$t("contacts.table_head_total_phones")}}
+                  b-button.btn.table-btn(
+                    size="sm"
+                    style="margin-right: 5px"
+                    @click="addPhoneToContact(data.item)"
+                    :title="$t('strings.add')"
                   )
-                    .d-flex.justify-content-between
-                      p
-                        strong.mb-1 {{phone.phone}}
-                      | {{phone.name}}
-                      small
+                    b-icon(
+                      icon="person-plus"
+                      style="color: #fff; margin-right: 5px"
+                    )
+                    | {{$t('strings.add')}}
+                b-card-text
+                  b-list-group()
+                    b-list-group-item.flex-column.align-items-start(
+                      v-for="(phone, key) in data.item.phones" :key="key"
+                      :class="(phone.primary === 1) ? 'active' : ''"
+                    )
+                      .d-flex.justify-content-between
+                        strong {{phone.name}} - {{phone.phone}}
+                      hr
+                      .mt-3
                         b-button.btn.table-btn(
                           size="sm"
                           style="margin-right: 5px"

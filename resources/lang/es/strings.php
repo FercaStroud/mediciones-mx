@@ -24,6 +24,7 @@ return [
     'hide' => 'Ocultar',
     'details' => 'Detalles',
     'edit' => 'Editar',
+    'add' => 'Añadir',
     'delete' => 'Eliminar',
 
     // Pages

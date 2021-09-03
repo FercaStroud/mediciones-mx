@@ -333,6 +333,7 @@ export default {
             "hide": "Ocultar",
             "details": "Detalles",
             "edit": "Editar",
+            "add": "Añadir",
             "delete": "Eliminar",
             "example": "Ejemplo",
             "home": "Home",
