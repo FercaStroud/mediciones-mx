@@ -34,6 +34,25 @@
 
 @import '~bootstrap-vue/src/index.scss';
 
+@mixin backgrounds($c, $y) {
+  background: $c;
+  @for $i from 1 through $y {
+    $k: 3%;
+    $j: $i - 1;
+
+    @if $i == 1 {
+      &:nth-child(#{$i}) {
+        background: $c;
+      }
+    } @else {
+      &:nth-child(#{$i}) {
+        background: darken($c, ($k * $j));
+      }
+    }
+  }
+}
+
+
 html {
   height: 100%;
 }
@@ -42,19 +61,24 @@ body {
   background: #f7f7f8;
   height: 100%;
   overflow-x: hidden;
+
   h1 {
     font-size: 35px;
   }
+
   main.container {
     padding-top: 20px;
   }
+
   #vue-loading {
     margin: 16px;
   }
+
   .btn-link {
     cursor: pointer;
   }
-  .full-width{
+
+  .full-width {
     width: 100%;
   }
 }

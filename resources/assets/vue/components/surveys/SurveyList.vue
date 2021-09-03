@@ -137,6 +137,7 @@ export default class SurveyList extends Vue {
             icon="pencil"
             style="color: #fff;"
           )
+          | {{$t('strings.edit')}}
 
         b-button.btn-danger.table-btn.mb-2(
           :title="$t('strings.delete')"
@@ -147,6 +148,7 @@ export default class SurveyList extends Vue {
             icon="trash-fill"
             style="color: #fff"
           )
+          | {{$t('strings.delete')}}
 
       template(v-slot:cell(index)="data")
         span {{ data.index + 1 }}

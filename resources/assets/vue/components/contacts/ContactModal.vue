@@ -42,8 +42,6 @@ export default class QuestionModal extends Vue {
     @hide='handleClose',
     @ok.prevent='handleOk',
   )
-    b-row
-      p {{this.form}}
     b-form
       b-row
         b-col(md="4")
@@ -55,7 +53,7 @@ export default class QuestionModal extends Vue {
             b-form-input#first_name(
               type='text',
               v-model='form.firstName',
-              maxlength="15",
+              maxlength="30",
               required,
             )
         b-col(md="4")

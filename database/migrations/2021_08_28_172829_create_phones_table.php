@@ -17,6 +17,7 @@ class CreatePhonesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 20)->nullable();
             $table->string('phone', '15');
+            $table->boolean('primary')->default(0);
             $table->timestamps();
         });
     }

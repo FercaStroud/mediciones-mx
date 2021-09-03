@@ -20,6 +20,11 @@ return [
     'show_details' => 'Ver Detalles',
     'browse' => 'Buscar',
     'choose_img' => 'Elija una imagen',
+    'show' => 'Mostrar',
+    'hide' => 'Ocultar',
+    'details' => 'Detalles',
+    'edit' => 'Editar',
+    'delete' => 'Eliminar',
 
     // Pages
     'example' => 'Ejemplo',

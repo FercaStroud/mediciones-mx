@@ -234,7 +234,13 @@ export default {
             "form_second_last_name": "Apellido Materno",
             "form_first_name_description": "Nombre(s)",
             "form_last_name_description": "Apellido Paterno",
-            "form_second_last_name_description": "Apellido Materno"
+            "form_second_last_name_description": "Apellido Materno",
+            "table_head_fullName": "Nombre Completo",
+            "table_head_total_addresses": "Direcciones Registradas",
+            "table_head_total_phones": "Teléfonos Registrados",
+            "table_head_total_emails": "E-Mails Registrados",
+            "zipcode": "C.P.",
+            "other_details": "Detalles Adicionales"
         },
         "errors": {
             "fatal_error": "Se produjo un error fatal, póngase en contacto con nosotros.",
@@ -323,6 +329,11 @@ export default {
             "show_details": "Ver Detalles",
             "browse": "Buscar",
             "choose_img": "Elija una imagen",
+            "show": "Mostrar",
+            "hide": "Ocultar",
+            "details": "Detalles",
+            "edit": "Editar",
+            "delete": "Eliminar",
             "example": "Ejemplo",
             "home": "Home",
             "messages": "Mensajes",

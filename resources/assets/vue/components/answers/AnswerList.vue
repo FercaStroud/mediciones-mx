@@ -121,6 +121,7 @@ export default class AnswerList extends Vue {
             icon="pencil"
             style="color: #fff;"
           )
+          | {{$t('strings.edit')}}
 
         b-button.btn-danger.table-btn.mb-2(
           :title="$t('strings.delete')"
@@ -131,6 +132,7 @@ export default class AnswerList extends Vue {
             icon="trash-fill"
             style="color: #fff"
           )
+          | {{$t('strings.delete')}}
 
       template(v-slot:cell(src)="data")
         img(

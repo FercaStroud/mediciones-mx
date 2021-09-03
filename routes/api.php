@@ -41,6 +41,9 @@ Route::group([
     Route::resource('answers', 'Resources\AnswerController', [
         'except' => ['create', 'edit', 'show'],
     ]);
+    Route::resource('contacts', 'Resources\ContactController', [
+        'except' => ['create', 'edit', 'show'],
+    ]);
 });
 
 Route::group([

@@ -5,6 +5,9 @@ export default {
       label: '#',
     },
     {
+      key: 'fullName',
+    },
+    /*{
       key: 'firstName',
     },
     {
@@ -12,15 +15,15 @@ export default {
     },
     {
       key: 'secondLastName',
+    },*/
+    {
+      key: 'total_addresses',
     },
     {
-      key: 'addresses',
+      key: 'total_phones',
     },
     {
-      key: 'phones',
-    },
-    {
-      key: 'emails',
+      key: 'total_emails',
     },
     {
       key: 'created_at',
