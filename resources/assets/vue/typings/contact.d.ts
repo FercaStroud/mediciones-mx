@@ -1,6 +1,6 @@
 declare interface Contact {
   id: number;
-  firstName: string;
-  lastName: string;
-  secondLastName: string;
+  first_name: string;
+  last_name: string;
+  second_last_name: string;
 }

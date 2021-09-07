@@ -52,7 +52,7 @@ export default class QuestionModal extends Vue {
           )
             b-form-input#first_name(
               type='text',
-              v-model='form.firstName',
+              v-model='form.first_name',
               maxlength="30",
               required,
             )
@@ -64,7 +64,7 @@ export default class QuestionModal extends Vue {
           )
             b-form-input#last_name(
               type='text',
-              v-model='form.lastName',
+              v-model='form.last_name',
               maxlength="15",
               required,
             )
@@ -76,7 +76,7 @@ export default class QuestionModal extends Vue {
           )
             b-form-input#second_last_name(
               type='text',
-              v-model='form.secondLastName',
+              v-model='form.second_last_name',
               maxlength="15",
             )
 

@@ -5,25 +5,16 @@ export default {
       label: '#',
     },
     {
-      key: 'fullName',
+      key: 'full_name',
     },
-    /*{
-      key: 'firstName',
-    },
-    {
-      key: 'lastName',
-    },
-    {
-      key: 'secondLastName',
-    },*/
     {
       key: 'total_addresses',
     },
     {
-      key: 'total_phones',
+      key: 'total_emails',
     },
     {
-      key: 'total_emails',
+      key: 'total_phones',
     },
     {
       key: 'created_at',

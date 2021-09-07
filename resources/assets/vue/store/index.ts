@@ -14,6 +14,9 @@ import surveys from './surveys';
 import questions from './questions';
 import answers from './answers';
 import contacts from './contacts';
+import addresses from './addresses';
+import emails from './emails';
+import phones from './phones';
 
 Vue.use(Vuex);
 
@@ -24,6 +27,9 @@ const modules = {
   questions,
   answers,
   contacts,
+  addresses,
+  emails,
+  phones,
 };
 
 const store = new Vuex.Store({

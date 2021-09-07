@@ -44,6 +44,15 @@ Route::group([
     Route::resource('contacts', 'Resources\ContactController', [
         'except' => ['create', 'edit', 'show'],
     ]);
+    Route::resource('addresses', 'Resources\AddressesController', [
+        'except' => ['create', 'edit', 'show'],
+    ]);
+    Route::resource('emails', 'Resources\EmailsController', [
+        'except' => ['create', 'edit', 'show'],
+    ]);
+    Route::resource('phones', 'Resources\PhonesController', [
+        'except' => ['create', 'edit', 'show'],
+    ]);
 });
 
 Route::group([

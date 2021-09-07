@@ -41,11 +41,7 @@ class QuestionController extends Controller
         ]);
 
         $question = new Question($request->all());
-        if($question->required == "true"){
-            $question->required = 1;
-        } else{
-            $question->required = 0;
-        }
+        $question->required = $question->required == "true" ? 1 : 0;
         $question->src = null;
 
         if ($request->has('src') and $request->file('src') !== null) {

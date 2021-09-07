@@ -4,11 +4,22 @@ import {Action, State, namespace} from 'vuex-class';
 
 import dialog from '@/utils/dialog';
 
+import AddressModal from '@/components/addresses/AddressModal.vue';
+import EmailModal from '@/components/emails/EmailModal.vue';
+import PhoneModal from '@/components/phones/PhoneModal.vue';
+
 const cStore = namespace('contacts');
+const aStore = namespace('addresses');
+const eStore = namespace('emails');
+const pStore = namespace('phones');
 
 @Component(
   {
-    components: {},
+    components: {
+      AddressModal,
+      EmailModal,
+      PhoneModal,
+    },
   }
 )
 
@@ -23,6 +34,33 @@ export default class ContactList extends Vue {
   @cStore.Action setModalVisible;
   @cStore.Action setModalAdd;
   @cStore.Action setForm;
+
+  address: Partial<Address> = {};
+  @aStore.Action setAddressModalVisible;
+  @aStore.Action setAddressForm;
+  @aStore.Action setAddressModalAdd;
+  @aStore.Action deleteAddress;
+  @aStore.State isAddressModalVisible;
+  @aStore.State isAddressModalAdd;
+  @aStore.State addressForm;
+
+  email: Partial<Email> = {};
+  @eStore.Action setEmailModalVisible;
+  @eStore.Action setEmailForm;
+  @eStore.Action setEmailModalAdd;
+  @eStore.Action deleteEmail;
+  @eStore.State isEmailModalVisible;
+  @eStore.State isEmailModalAdd;
+  @eStore.State emailForm;
+
+  phone: Partial<Phone> = {};
+  @pStore.Action setPhoneModalVisible;
+  @pStore.Action setPhoneForm;
+  @pStore.Action setPhoneModalAdd;
+  @pStore.Action deletePhone;
+  @pStore.State isPhoneModalVisible;
+  @pStore.State isPhoneModalAdd;
+  @pStore.State phoneForm;
 
   mounted() {
     this.$nextTick(() => {
@@ -50,6 +88,72 @@ export default class ContactList extends Vue {
 
   async getContacts(): Promise<void> {
     this.loadContacts();
+  }
+
+  addAddress(contact): void {
+    this.address.contact_id = contact.id;
+    this.setAddressForm(this.address);
+    this.setAddressModalAdd(true);
+    this.setAddressModalVisible(true);
+  }
+
+  editAddress(address: Address): void {
+    address.primary = Boolean(address.primary);
+    this.setAddressForm(address);
+    this.setAddressModalAdd(false);
+    this.setAddressModalVisible(true);
+  }
+
+  async deleteAddressConfirm(address: Address): Promise<void> {
+    if (!(await dialog('front.delete_address_confirmation', true))) {
+      return;
+    }
+
+    this.deleteAddress(address);
+  }
+
+  addEmail(email): void {
+    this.email.contact_id = email.id;
+    this.setEmailForm(this.email);
+    this.setEmailModalAdd(true);
+    this.setEmailModalVisible(true);
+  }
+
+  editEmail(email: Email): void {
+    email.primary = Boolean(email.primary);
+    this.setEmailForm(email);
+    this.setEmailModalAdd(false);
+    this.setEmailModalVisible(true);
+  }
+
+  async deleteEmailConfirm(email: Email): Promise<void> {
+    if (!(await dialog('front.delete_email_confirmation', true))) {
+      return;
+    }
+
+    this.deleteEmail(email);
+  }
+
+  addPhone(phone): void {
+    this.phone.contact_id = phone.id;
+    this.setPhoneForm(this.phone);
+    this.setPhoneModalAdd(true);
+    this.setPhoneModalVisible(true);
+  }
+
+  editPhone(phone: Phone): void {
+    phone.primary = Boolean(phone.primary);
+    this.setPhoneForm(phone);
+    this.setPhoneModalAdd(false);
+    this.setPhoneModalVisible(true);
+  }
+
+  async deletePhoneConfirm(phone: Phone): Promise<void> {
+    if (!(await dialog('front.delete_phone_confirmation', true))) {
+      return;
+    }
+
+    this.deletePhone(phone);
   }
 }
 </script>
@@ -79,7 +183,7 @@ export default class ContactList extends Vue {
         div.text-center.text-danger
           b-spinner.align-middle
 
-      template(v-slot:head(fullName)="data")
+      template(v-slot:head(full_name)="data")
         span {{$t("contacts.table_head_fullName")}}
       template(v-slot:head(total_addresses)="data")
         span {{$t("contacts.table_head_total_addresses")}}
@@ -97,8 +201,8 @@ export default class ContactList extends Vue {
       template(v-slot:head(show_details)="data")
         span {{$t("strings.show_details")}}
 
-      template(v-slot:cell(fullName)="data")
-        span {{data.item.firstName}} {{data.item.lastName}} {{data.item.secondLastName}}
+      template(v-slot:cell(full_name)="data")
+        span {{data.item.first_name}} {{data.item.last_name}} {{data.item.second_last_ame}}
       template(v-slot:cell(total_addresses)="data")
         span {{data.item.count_addresses}}
       template(v-slot:cell(total_phones)="data")
@@ -154,7 +258,7 @@ export default class ContactList extends Vue {
                   b-button.btn.table-btn.mb-2(
                     size="sm"
                     style="margin-right: 5px"
-                    @click="addAddressToContact(data.item)"
+                    @click="addAddress(data.item)"
                     :title="$t('strings.add')"
                   )
                     b-icon(
@@ -166,10 +270,11 @@ export default class ContactList extends Vue {
                   b-list-group()
                     b-list-group-item.flex-column.align-items-start(
                       v-for="(address, key) in data.item.addresses" :key="key"
-                      :class="(address.primary === 1) ? 'active' : ''"
+                      :class="(address.primary) ? 'active' : ''"
                     )
                       .d-flex.justify-content-between
-                        strong.mb-1 {{address.street_name}} {{ ', #' + address.street_number}} {{ ', INT ' + address.street_number_int}}
+                        strong.mb-1 {{address.street_name}} {{ ', #' + address.street_number}}
+                        strong(v-if="address.street_number_int!=null") , INT {{address.street_number_int}}
                         small {{address.country}}, {{address.state}}, {{address.city}}
 
                       p
@@ -183,7 +288,7 @@ export default class ContactList extends Vue {
                         b-button.btn.table-btn.mb-2(
                           size="sm"
                           style="margin-right: 5px"
-                          @click="handleEditAddress(data.item)"
+                          @click="editAddress(address)"
                           :title="$t('strings.edit')"
                         )
                           b-icon(
@@ -193,7 +298,7 @@ export default class ContactList extends Vue {
                           | {{$t('strings.edit')}}
                         b-button.btn-danger.table-btn.mb-2(
                           :title="$t('strings.delete')"
-                          @click="deleteAddressConfirm(data.item)"
+                          @click="deleteAddressConfirm(address)"
                           size="sm"
                         )
                           b-icon(
@@ -208,7 +313,7 @@ export default class ContactList extends Vue {
                   b-button.btn.table-btn(
                     size="sm"
                     style="margin-right: 5px"
-                    @click="addEmailToContact(data.item)"
+                    @click="addEmail(data.item)"
                     :title="$t('strings.add')"
                   )
                     b-icon(
@@ -220,7 +325,7 @@ export default class ContactList extends Vue {
                   b-list-group()
                     b-list-group-item.flex-column.align-items-start(
                       v-for="(email, key) in data.item.emails" :key="key"
-                      :class="(email.primary === 1) ? 'active' : ''"
+                      :class="(email.primary) ? 'active' : ''"
                     )
                       .d-flex.justify-content-between
                         strong.mb-1 {{email.email}}
@@ -229,7 +334,7 @@ export default class ContactList extends Vue {
                         b-button.btn.table-btn(
                           size="sm"
                           style="margin-right: 5px"
-                          @click="handleEditEmail(data.item)"
+                          @click="editEmail(email)"
                           :title="$t('strings.edit')"
                         )
                           b-icon(
@@ -239,7 +344,7 @@ export default class ContactList extends Vue {
                           | {{$t('strings.edit')}}
                         b-button.btn-danger.table-btn(
                           :title="$t('strings.delete')"
-                          @click="deleteEmailConfirm(data.item)"
+                          @click="deleteEmailConfirm(email)"
                           size="sm"
                         )
                           b-icon(
@@ -254,7 +359,7 @@ export default class ContactList extends Vue {
                   b-button.btn.table-btn(
                     size="sm"
                     style="margin-right: 5px"
-                    @click="addPhoneToContact(data.item)"
+                    @click="addPhone(data.item)"
                     :title="$t('strings.add')"
                   )
                     b-icon(
@@ -266,7 +371,7 @@ export default class ContactList extends Vue {
                   b-list-group()
                     b-list-group-item.flex-column.align-items-start(
                       v-for="(phone, key) in data.item.phones" :key="key"
-                      :class="(phone.primary === 1) ? 'active' : ''"
+                      :class="(phone.primary) ? 'active' : ''"
                     )
                       .d-flex.justify-content-between
                         strong {{phone.name}} - {{phone.phone}}
@@ -275,7 +380,7 @@ export default class ContactList extends Vue {
                         b-button.btn.table-btn(
                           size="sm"
                           style="margin-right: 5px"
-                          @click="handleEditPhone(data.item)"
+                          @click="editPhone(phone)"
                           :title="$t('strings.edit')"
                         )
                           b-icon(
@@ -285,7 +390,7 @@ export default class ContactList extends Vue {
                           | {{$t('strings.edit')}}
                         b-button.btn-danger.table-btn(
                           :title="$t('strings.delete')"
-                          @click="deletePhoneConfirm(data.item)"
+                          @click="deletePhoneConfirm(phone)"
                           size="sm"
                         )
                           b-icon(
@@ -297,6 +402,26 @@ export default class ContactList extends Vue {
       template(v-slot:cell(index)="data")
         span {{ data.index + 1 }}
 
+    address-modal(
+      ref='address_modal',
+      :form='addressForm',
+      :is-add='isAddressModalAdd',
+      :is-visible='isAddressModalVisible',
+    )
+
+    email-modal(
+      ref='email_modal',
+      :form='emailForm',
+      :is-add='isEmailModalAdd',
+      :is-visible='isEmailModalVisible',
+    )
+
+    phone-modal(
+      ref='phone_modal',
+      :form='phoneForm',
+      :is-add='isPhoneModalAdd',
+      :is-visible='isPhoneModalVisible',
+    )
 
 </template>
 

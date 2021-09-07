@@ -23,9 +23,9 @@ const loadContacts = async ({ commit }, payload) => {
 const addContact = async ({ commit }, payload) => {
 
   const contacts = {
-    firstName: payload.firstName,
-    lastName: payload.lastName,
-    secondLastName: payload.secondLastName,
+    first_name: payload.first_name,
+    last_name: payload.last_name,
+    second_last_name: payload.second_last_name,
   };
 
   commit('SET_MODAL_LOADING', true);
@@ -49,9 +49,9 @@ const addContact = async ({ commit }, payload) => {
 
 const editContact = async ({ commit }, payload) => {
   const contacts = {
-    firstName: payload.firstName,
-    lastName: payload.lastName,
-    secondLastName: payload.secondLastName,
+    first_name: payload.first_name,
+    last_name: payload.last_name,
+    second_last_name: payload.second_last_name,
   };
 
   commit('SET_MODAL_LOADING', true);

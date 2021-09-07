@@ -20,9 +20,9 @@ class Contact extends Model
     ];
 
     protected $fillable = [
-        'firstName',
-        'lastName',
-        'secondLastName',
+        'first_name',
+        'last_name',
+        'second_last_name',
     ];
 
     protected $hidden = [

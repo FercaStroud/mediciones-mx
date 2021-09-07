@@ -198,6 +198,30 @@ export default {
         }
     },
     "es": {
+        "addresses": {
+            "add_title": "Añadir Dirección a Contacto",
+            "edit_title": "Editar Dirección a Contacto",
+            "form_contact_id": "ID de Contacto",
+            "form_primary": "¿Dirección Predeterminada?",
+            "form_street_name": "Nombre de la Calle",
+            "form_street_number": "Número Externo",
+            "form_street_number_int": "Número Interior",
+            "form_zipcode": "C.P.",
+            "form_country": "Ciudad",
+            "form_state": "Estado",
+            "form_city": "Ciudad",
+            "form_other_details": "Detalles Adicionales",
+            "form_contact_id_description": "SOLO LECTURA",
+            "form_street_name_description": "form_street_name_description",
+            "form_street_number_description": "form_street_number_description",
+            "form_street_number_int_description": "form_street_number_int_description",
+            "form_zipcode_description": "form_zipcode_description",
+            "form_country_description": "form_country_description",
+            "form_state_description": "form_state_description",
+            "form_city_description": "form_city_description",
+            "form_other_details_description": "form_other_details_description",
+            "form_primary_description": "form_primary_description"
+        },
         "auth": {
             "failed": "Las credenciales no se han encontrado.",
             "general_error": "No tiene suficientes permisos..",
@@ -242,6 +266,15 @@ export default {
             "zipcode": "C.P.",
             "other_details": "Detalles Adicionales"
         },
+        "emails": {
+            "add_title": "Añadir Dirección de E-Mail",
+            "edit_title": "Editar Dirección de E-Mail",
+            "form_contact_id": "ID de Contacto",
+            "form_primary": "¿Dirección Predeterminada?",
+            "form_primary_description": "form_primary_description",
+            "form_email": "E-Mail",
+            "form_email_description": "form_email_description"
+        },
         "errors": {
             "fatal_error": "Se produjo un error fatal, póngase en contacto con nosotros.",
             "generic_error": "Ha ocurrido un error. Por favor intente de nuevo.",
@@ -252,6 +285,9 @@ export default {
             "password_changed_successfully": "Tu contraseña ha sido cambiada exitosamente.",
             "passwords_not_match": "La confirmación de contraseña no coincide.",
             "settings": "Configuraciones",
+            "delete_phone_confirmation": "¿Seguro que quieres eliminar este teléfono?",
+            "delete_email_confirmation": "¿Seguro que quieres eliminar este e-mail?",
+            "delete_address_confirmation": "¿Seguro que quieres eliminar esta dirección?",
             "delete_user_confirmation": "¿Seguro que quieres eliminar a este usuario?",
             "delete_contact_confirmation": "¿Seguro que quieres eliminar a este Contacto?",
             "language": "Español"
@@ -282,6 +318,17 @@ export default {
             "sent": "Le hemos enviado el enlace para el reinicio de la contraseña!",
             "token": "El código del reinicio de la contraseña es incorrecto.",
             "user": "El Usuario con este Correo no se ha encontrado."
+        },
+        "phones": {
+            "add_title": "Añadir Teléfono",
+            "edit_title": "Editar Teléfono",
+            "form_contact_id": "ID de Contacto",
+            "form_primary": "¿Teléfono Predeterminada?",
+            "form_primary_description": "form_primary_description",
+            "form_name": "Alias del Contacto",
+            "form_name_description": "form_name_description",
+            "form_phone": "Teléfono de Contacto",
+            "form_phone_description": "form_phone_description"
         },
         "questions": {
             "title": "Pregunta",

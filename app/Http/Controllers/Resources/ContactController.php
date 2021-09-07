@@ -28,8 +28,8 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
         ]);
 
         $contact = new Contact($request->all());
@@ -45,8 +45,9 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         $request->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
+            'id' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
         ]);
 
         return tap($contact)->update($request->all());
