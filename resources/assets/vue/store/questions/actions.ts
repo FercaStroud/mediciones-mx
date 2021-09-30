@@ -26,12 +26,18 @@ const addQuestion = async ({ commit }, payload) => {
   formData.append('input_type_id', payload.input_type_id);
   formData.append('survey_id', payload.survey_id);
   formData.append('title', payload.title);
-  formData.append('required', payload.required);
 
   if (payload.src !== 'undefined' && payload.src !== undefined) {
     formData.append('src', payload.src);
   }
-  formData.append('order', payload.order);
+
+  if (payload.order !== 'undefined' && payload.order !== undefined) {
+    formData.append('order', payload.order);
+  }
+
+  if (payload.required !== 'undefined' && payload.required !== undefined) {
+    formData.append('required', payload.required);
+  }
 
   commit('SET_MODAL_LOADING', true);
 
@@ -53,18 +59,20 @@ const addQuestion = async ({ commit }, payload) => {
 };
 
 const editQuestion = async ({ commit }, payload) => {
+
   const formData = new FormData();
   formData.append('input_type_id', payload.input_type_id);
   formData.append('survey_id', payload.survey_id);
   formData.append('title', payload.title);
   formData.append('src', payload.src);
   formData.append('order', payload.order);
-  formData.append('required', payload.required);
 
   commit('SET_MODAL_LOADING', true);
 
   try {
-    const response = await axios.put(`questions/${payload.id}`, formData);
+    const response = await axios.post(`questions/${payload.id}?_method=PUT`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
     const checkErrors = checkResponse(response);
 
     if (checkErrors) {

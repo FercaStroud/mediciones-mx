@@ -40,4 +40,9 @@ class Contact extends Model
     {
         return $this->hasMany('App\Email');
     }
+
+    public function countAdresses()
+    {
+        return count($this->addresses()->getAll());
+    }
 }

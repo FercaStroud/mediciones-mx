@@ -25,10 +25,10 @@ const addAnswer = async ({ commit }, payload) => {
   const formData = new FormData();
   formData.append('question_id', payload.question_id);
 
-  if(payload.src !== "undefined" && payload.src !== undefined) {
+  if (payload.src !== 'undefined' && payload.src !== undefined) {
     formData.append('src', payload.src);
   }
-  if(payload.force_question_id !== "undefined" && payload.force_question_id !== undefined) {
+  if (payload.force_question_id !== 'undefined' && payload.force_question_id !== undefined) {
     formData.append('force_question_id', payload.force_question_id);
   }
   formData.append('order', payload.order);
@@ -36,7 +36,7 @@ const addAnswer = async ({ commit }, payload) => {
   formData.append('title', payload.title);
   formData.append('end_survey', payload.end_survey);
 
-  if(payload.src !== "undefined" && payload.src !== undefined) {
+  if (payload.src !== 'undefined' && payload.src !== undefined) {
     formData.append('src', payload.src);
   }
 
@@ -63,14 +63,13 @@ const editAnswer = async ({ commit }, payload) => {
   const formData = new FormData();
   formData.append('question_id', payload.question_id);
 
-  if(payload.src !== "undefined" && payload.src !== undefined) {
+  if (payload.src !== 'undefined' && payload.src !== undefined) {
     formData.append('src', payload.src);
   }
-  if(payload.force_question_id !== "undefined" && payload.force_question_id !== undefined) {
+
+  if (payload.force_question_id !== undefined && payload.force_question_id !== null) {
     formData.append('force_question_id', payload.force_question_id);
   }
-
-
   formData.append('order', payload.order);
   formData.append('value', payload.value);
   formData.append('title', payload.title);
@@ -79,7 +78,7 @@ const editAnswer = async ({ commit }, payload) => {
   commit('SET_MODAL_LOADING', true);
 
   try {
-    const response = await axios.put(`answers/${payload.id}`, formData);
+    const response = await axios.post(`answers/${payload.id}?_method=PUT`, formData);
     const checkErrors = checkResponse(response);
 
     if (checkErrors) {

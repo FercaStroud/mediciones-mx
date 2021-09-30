@@ -53,6 +53,9 @@ Route::group([
     Route::resource('phones', 'Resources\PhonesController', [
         'except' => ['create', 'edit', 'show'],
     ]);
+    Route::resource('questions_answers', 'Resources\QuestionAnswerController', [
+        'except' => ['create', 'edit', 'show'],
+    ]);
 });
 
 Route::group([

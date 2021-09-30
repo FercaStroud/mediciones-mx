@@ -17,8 +17,8 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title', 140);
             $table->string('src', 140)->nullable();
-            $table->tinyInteger('order');
-            $table->boolean('required');
+            $table->tinyInteger('order')->default(0);
+            $table->boolean('required')->default(0);;
             $table->timestamps();
         });
     }

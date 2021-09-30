@@ -33,6 +33,7 @@ class ContactController extends Controller
         ]);
 
         $contact = new Contact($request->all());
+        //$contact->user_id = $request->user()->id;
         $contact->save();
         return response()->json($contact, 201);
     }

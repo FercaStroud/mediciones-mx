@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\Resources;
 
 use App\Question;
-use App\User;
-use Illuminate\Database\QueryException;
+use Httpful\Test\requestTest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Util\Utils;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
-
-use phpDocumentor\Reflection\Types\Integer;
 use Response;
 
 class QuestionController extends Controller
@@ -41,7 +37,8 @@ class QuestionController extends Controller
         ]);
 
         $question = new Question($request->all());
-        $question->required = $question->required == "true" ? 1 : 0;
+        $question->required = (int)(bool)$request->get('required');
+
         $question->src = null;
 
         if ($request->has('src') and $request->file('src') !== null) {

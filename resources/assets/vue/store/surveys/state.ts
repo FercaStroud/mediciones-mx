@@ -21,7 +21,7 @@ export default {
     },
     {
       key: 'questions',
-    },,
+    },
     {
       key: 'active',
     },

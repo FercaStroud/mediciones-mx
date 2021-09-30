@@ -4,7 +4,13 @@ import {Action, State, namespace} from 'vuex-class';
 
 const qStore = namespace('questions');
 
-@Component
+@Component(
+  {
+    components: {
+    },
+  }
+)
+
 export default class QuestionModal extends Vue {
   @Prop() form;
   @Prop() isAdd;
@@ -16,12 +22,25 @@ export default class QuestionModal extends Vue {
   @Action setDialogMessage;
 
   handleOk() {
+    /* const reader = new FileReader();
+     reader.readAsDataURL(this.form.src);
+     reader.onload = () => {
+       this.form.base64 = reader.result
+       this.form.base64 = {
+         name: this.form.src.name,
+         type: this.form.src.type,
+         size: `${Math.round(this.form.src.size / 1000)} kB`,
+         base64: reader.result,
+       };
+    };*/
+
     if (this.isAdd) {
       this.addQuestion(this.form);
     } else {
       this.editQuestion(this.form);
     }
   }
+
 
   handleClose() {
     this.setModalVisible(false);
@@ -110,7 +129,6 @@ export default class QuestionModal extends Vue {
       :description='$t("questions.form_image_description")'
     )
       b-form-file#src(
-        type='text',
         accept="image/*",
         :browse-text='$t("strings.browse")',
         :state="Boolean(form.src)"

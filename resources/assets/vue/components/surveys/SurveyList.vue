@@ -45,6 +45,10 @@ export default class SurveyList extends Vue {
     this.$router.push({path: '/questions/survey/' + survey_id});
   }
 
+  toQuestionAnswerPage(survey_id: number): void{
+    this.$router.push({path: '/questions/survey/' + survey_id + '/results'});
+  }
+
   async deleteSurveyConfirm(survey: Survey): Promise<void> {
     if (!(await dialog('front.delete_survey_confirmation', true))) {
       return;
@@ -110,7 +114,7 @@ export default class SurveyList extends Vue {
         span {{$t("strings.actions")}}
 
       template(v-slot:cell(active)="data")
-        b-button(v-if="data.item.active === 1" variant="outline-success" disabled ) {{ $t('surveys.active_true') }}
+        b-button(v-if="data.item.active" variant="outline-success" disabled ) {{ $t('surveys.active_true') }}
         b-button(v-else disabled variant="outline-secondary") {{ $t('surveys.active_false') }}
       template(v-slot:cell(questions)="data")
         b-button.btn.table-btn.mr-2(
@@ -125,6 +129,7 @@ export default class SurveyList extends Vue {
       template(v-slot:cell(actions)="data")
         b-button.btn.table-btn.mr-2(
           style="margin-bottom: 5px"
+          @click="toQuestionAnswerPage(data.item.id)"
         ) {{ $t('strings.show_details') }}
 
         b-button.btn.table-btn.mb-2(
@@ -135,7 +140,7 @@ export default class SurveyList extends Vue {
         )
           b-icon(
             icon="pencil"
-            style="color: #fff;"
+            style="color: #fff;margin-right:5px"
           )
           | {{$t('strings.edit')}}
 
@@ -146,7 +151,7 @@ export default class SurveyList extends Vue {
         )
           b-icon(
             icon="trash-fill"
-            style="color: #fff"
+            style="color: #fff;margin-right:5px"
           )
           | {{$t('strings.delete')}}
 

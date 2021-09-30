@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Util\Utils;
 use Illuminate\Support\Str;
+use Rebing\GraphQL\Exception\TypeNotFound;
 use Response;
 
 class SurveyController extends Controller
@@ -62,8 +63,6 @@ class SurveyController extends Controller
         $survey[0]['questions'] = $questions;
 
         foreach ($survey[0]['questions'] as $key => $question){
-            //$answers = Question::where('question_id', '=', $question['id'])->orderBy('order', 'asc')->get();
-
             $answers = Question::find($question['id'])->answers;
             foreach ($answers as $index => $answer){
                 $answer['end_survey'] = (bool)$answer['end_survey'];

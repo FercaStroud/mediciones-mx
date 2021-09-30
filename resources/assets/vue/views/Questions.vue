@@ -42,6 +42,8 @@ export default class Questions extends Vue {
     );
   }
   addQuestion(): void {
+    this.question.input_type_id = 1;
+    this.question.required = true;
     this.setForm(this.question);
     this.setModalAdd(true);
     this.setModalVisible(true);

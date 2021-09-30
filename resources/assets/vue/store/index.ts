@@ -17,6 +17,7 @@ import contacts from './contacts';
 import addresses from './addresses';
 import emails from './emails';
 import phones from './phones';
+import questions_answers from './questions_answers';
 
 Vue.use(Vuex);
 
@@ -30,6 +31,7 @@ const modules = {
   addresses,
   emails,
   phones,
+  questions_answers,
 };
 
 const store = new Vuex.Store({

@@ -36,6 +36,7 @@ export default class QuestionList extends Vue {
   }
 
   handleEditQuestion(question: Question):void{
+    question.required = Boolean(question.required);
     this.setForm(question);
     this.setModalAdd(false);
     this.setModalVisible(true);
@@ -115,7 +116,7 @@ export default class QuestionList extends Vue {
         ) {{ $t('questions.view_answers') }}
 
       template(v-slot:cell(required)="data")
-        b-button(v-if="data.item.required === 1" variant="outline-success" disabled ) {{ $t('questions.required_true') }}
+        b-button(v-if="data.item.required" variant="outline-success" disabled ) {{ $t('questions.required_true') }}
         b-button(v-else disabled variant="outline-secondary") {{ $t('questions.required_false') }}
 
       template(v-slot:cell(created_at)="data")
@@ -131,7 +132,7 @@ export default class QuestionList extends Vue {
         )
           b-icon(
             icon="pencil"
-            style="color: #fff;"
+            style="color: #fff;margin-right: 5px"
           )
           | {{$t('strings.edit')}}
 
@@ -142,7 +143,7 @@ export default class QuestionList extends Vue {
         )
           b-icon(
             icon="trash-fill"
-            style="color: #fff"
+            style="color: #fff;margin-right: 5px"
           )
           | {{$t('strings.delete')}}
 

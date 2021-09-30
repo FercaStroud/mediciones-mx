@@ -36,6 +36,7 @@ export default class AnswerList extends Vue {
   }
 
   handleEditAnswer(answer: Answer):void{
+    answer.end_survey = Boolean(answer.end_survey);
     this.setForm(answer);
     this.setModalAdd(false);
     this.setModalVisible(true);
@@ -103,7 +104,7 @@ export default class AnswerList extends Vue {
         span {{$t("strings.actions")}}
 
       template(v-slot:cell(end_survey)="data")
-        b-button(v-if="data.item.end_survey === 1" variant="outline-success" disabled ) {{ $t('answers.end_survey_true') }}
+        b-button(v-if="data.item.end_survey" variant="outline-success" disabled ) {{ $t('answers.end_survey_true') }}
         b-button(v-else disabled variant="outline-secondary") {{ $t('answers.end_survey_false') }}
 
       template(v-slot:cell(created_at)="data")

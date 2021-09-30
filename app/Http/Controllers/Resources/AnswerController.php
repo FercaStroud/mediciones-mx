@@ -55,8 +55,14 @@ class AnswerController extends Controller
             $answer->src = $filePath;
         }
 
-        $answer->end_survey = (int)$request->get('end_survey', 0);
+        if($request->get('end_survey') === "true"){
+            $answer->end_survey = 1;
+        } else{
+            $answer->end_survey = 0;
+        }
+
         $answer->save();
+
 
         return response()->json($answer, 201);
     }
@@ -72,15 +78,21 @@ class AnswerController extends Controller
             'question_id' => 'required',
             'title' => 'required',
             'value' => 'required',
+            'order' => 'required',
+            'end_survey' => 'required',
         ]);
 
-        $answer->title = $request->get("title", $answer->title);
-        $answer->value = $request->get("value", $answer->value);
-        $answer->order = $request->get("order", $answer->order);
-        $answer->end_survey = $request->get("end_survey", $answer->end_survey);
-        $answer->force_question_id = $request->get("force_question_id", $answer->force_question_id);
-        $answer->end_survey = (int)$request->get('end_survey', $answer->end_survey);
-        $answer->required = (int)$request->get('required', $answer->required);
+        if($request->get('end_survey') === "true"){
+            $answer->end_survey = 1;
+        } else{
+            $answer->end_survey = 0;
+        }
+
+        $answer->order = (int)$request->get('order', $answer->order);
+        $answer->title = $request->get('title', $answer->title);
+        $answer->value = $request->get('value', $answer->value);
+        $answer->question_id = (int)$request->get('question_id', $answer->question_id);
+
 
         if ($request->has('src') and $request->file('src') !== null) {
             $image = $request->file('src');

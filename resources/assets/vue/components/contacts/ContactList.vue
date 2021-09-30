@@ -342,6 +342,16 @@ export default class ContactList extends Vue {
                             style="color: #fff; margin-right: 5px"
                           )
                           | {{$t('strings.edit')}}
+
+                        b-button.btn-success.table-btn(
+                          title="Enviar Encuesta"
+                          @click=""
+                          style="margin-right: 5px"
+                          size="sm"
+                        )
+                          b-spinner(variant="light" small style="margin-right: 5px" type="grow")
+                          | Enviar Encuesta
+
                         b-button.btn-danger.table-btn(
                           :title="$t('strings.delete')"
                           @click="deleteEmailConfirm(email)"
@@ -388,6 +398,17 @@ export default class ContactList extends Vue {
                             style="color: #fff; margin-right: 5px"
                           )
                           | {{$t('strings.edit')}}
+
+                        b-button.btn-success.table-btn(
+                          title="Enviar Encuesta"
+                          @click=""
+                          style="margin-right: 5px"
+                          size="sm"
+                        )
+                          b-spinner(variant="light" small style="margin-right: 5px" type="grow")
+                          | Enviar Encuesta
+
+
                         b-button.btn-danger.table-btn(
                           :title="$t('strings.delete')"
                           @click="deletePhoneConfirm(phone)"
